@@ -1,0 +1,17 @@
+@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
+
+*
+{
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+body
+{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	font-family: 'BeaufortforLOL-Bold', 'Roboto', sans-serif;
+}
