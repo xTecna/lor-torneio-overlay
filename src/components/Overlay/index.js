@@ -12,7 +12,7 @@ const Overlay = () => {
 
 	return (
 		<OverlayDiv>
-			<Jogador nome="Sérket" bans={[true, false, false]}/>
+			<Jogador score="0" nome="Sérket" bans={[true, false, false]}/>
 			<Informe nome={nomeTorneio} fase={faseTorneio}/>
 			<Jogador nome="seja_um_pouco_mais_feliz" bans={[false, false, true]}/>
 		</OverlayDiv>
