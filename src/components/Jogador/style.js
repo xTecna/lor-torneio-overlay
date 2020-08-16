@@ -6,7 +6,6 @@ export const JogadorDecks = styled.div`
 `;
 
 export const Jogador = styled.div`
-	width: ${props => props.theme.webcamSize*2}vh;
 	display: flex;
 	flex-direction: row;
 `;

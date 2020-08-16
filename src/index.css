@@ -15,3 +15,13 @@ body
 	margin: 0px;
 	font-family: 'BeaufortforLOL-Bold', 'Roboto', sans-serif;
 }
+
+#content
+{
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 4fr;
+	grid-template-areas: 'overlay form';
+}
