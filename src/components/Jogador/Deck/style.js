@@ -7,6 +7,10 @@ export const Deck = styled.div`
 	height: ${props => props.theme.webcamSize*0.35}vh;
 `;
 
+export const QtdChampion = styled.h3`
+	font-size: 2vh;
+`;
+
 export const Champion = styled.div`
 	width: ${props => props.theme.webcamSize*(0.15)}vh;
 	height: ${props => props.theme.webcamSize*(0.15)}vh;
@@ -55,8 +59,4 @@ export const Champions = styled.div`
 	{
 		flex: ${props => props.inline ? "1" : "0 33%" };
 	}
-`;
-
-export const QtdChampion = styled.h3`
-	font-size: 2vh;
 `;

@@ -64,6 +64,10 @@ export const Champions = styled.div`
 	align-items: center;
 `;
 
+export const QtdChampion = styled.h3`
+	font-size: 2vh;
+`;
+
 export const Champion = styled.div`
 	width: ${props => props.theme.webcamSize*0.15}vh;
 	height: ${props => props.theme.webcamSize*0.15}vh;
