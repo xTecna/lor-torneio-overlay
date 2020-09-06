@@ -42,7 +42,7 @@ export const Region = styled.div`
 	border-radius: 50%;
 	width: ${props => props.theme.webcamSize*0.2}vh;
 	height: ${props => props.theme.webcamSize*0.2}vh;
-	border: #6A5D3D solid 0.2vh;
+	border: #6A5D3D solid 0.3vh;
 	background: #626662;
 	background: radial-gradient(circle, #626662 0%, #2a3233 35%, #161313 100%);
 	display: flex;
@@ -56,10 +56,13 @@ export const Region = styled.div`
 `;
 
 export const Champions = styled.div`
+	width: ${props => props.theme.webcamSize*0.15}vh;
+	height: ${props => props.theme.webcamSize*0.5}vh;
+	color: #ffffff;
 	padding: 0.5vh;
 	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
+	flex-direction: column;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	align-items: center;
 `;
@@ -71,11 +74,14 @@ export const QtdChampion = styled.h3`
 export const Champion = styled.div`
 	width: ${props => props.theme.webcamSize*0.15}vh;
 	height: ${props => props.theme.webcamSize*0.15}vh;
-	background-color: #000000;
+	display: flex;
+	flex-direction: row;
 	
 	img{
+		border: 0.1vh solid #000000;
 		margin: 5%;
-		width: 90%;
+		width: auto;
 		height: 90%;
+		object-fit: contain;
 	}
 `;

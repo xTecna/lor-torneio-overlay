@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Form = styled.div`
 	height: 100vh;
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 `;
@@ -31,9 +32,9 @@ export const SectionContent = styled.div`
 export const SectionTitle = styled.h1`
 	width: 100%;
 	height: 5vh;
-	color: #000000;
-	background-color: #ff0000;
-	border: 0.25vh solid #000000;
+	color: #ffffff;
+	background-image: linear-gradient(#4d312e, #452f2c);
+	border: #6A5D3D solid 0.3vh;
 	font-size: 3vh;
 	display: flex;
 	flex-direction: row;
@@ -42,7 +43,8 @@ export const SectionTitle = styled.h1`
 	button
 	{
 		width: 5vh;
-		font-size: 4vh;
+		font-size: 3vh;
+		text-align: center;
 	}
 `;
 

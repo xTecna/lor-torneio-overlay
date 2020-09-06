@@ -12,8 +12,8 @@ export const QtdChampion = styled.h3`
 `;
 
 export const Champion = styled.div`
-	width: ${props => props.theme.webcamSize*(0.15)}vh;
-	height: ${props => props.theme.webcamSize*(0.15)}vh;
+	width: ${props => props.theme.webcamSize*0.15}vh;
+	height: ${props => props.theme.webcamSize*0.15}vh;
 	display: flex;
 	flex-direction: row;
 	

@@ -1,0 +1,46 @@
+[
+	{
+		"nome":	"Alice",
+		"time":
+			{
+				"nome":		"WNX",
+				"url_logo":	"https://media.discordapp.net/attachments/703593969820631050/739497322580541540/WNX.png"
+			},
+		"decks": [
+			{
+				"regions":		["bilgewater", "shadowisles"],
+				"champions":	[{"nome": "Nautilus", "qtd": 3}, {"nome": "Maokai", "qtd": 3}]
+			},
+			{
+				"regions":		["freljord", "noxus"],
+				"champions":	[{"nome": "Ashe", "qtd": 3}, {"nome": "Sejuani", "qtd": 3}]
+			},
+			{
+				"regions":		["freljord", "shadowisles"],
+				"champions":	[{"nome": "Hecarim", "qtd": 1}, {"nome": "Elise", "qtd": 2}, {"nome": "Kalista", "qtd": 3}]
+			}
+		]
+	},
+	{
+		"nome": "Mafraju",
+		"time":
+			{
+				"nome":		"WNX",
+				"url_logo":	"https://media.discordapp.net/attachments/703593969820631050/739497322580541540/WNX.png"
+			},
+		"decks": [
+			{
+				"regions":		["freljord", "noxus"],
+				"champions":	[{"nome": "Ashe", "qtd": 3}, {"nome": "Sejuani", "qtd": 3}]
+			},
+			{
+				"regions":		["demacia", "ionia"],
+				"champions":	[{"nome": "Zed", "qtd": 3}, {"nome": "Fiora", "qtd": 3}]
+			},
+			{
+				"regions":		["noxus", "piltoverzaun"],
+				"champions":	[{"nome": "Draven", "qtd": 3}, {"nome": "Jinx", "qtd": 3}]
+			}
+		]
+	}
+]

@@ -9,9 +9,15 @@ function renderChampion(champion){
 const Deck = ({status, champions}) => {
 	return (
 		<DeckDiv>
-			<Champions className={status} inline={false}>
-				{champions.map(renderChampion)}
-			</Champions>
+			{status != undefined ?
+				<Champions className={status} inline={false}>
+					{champions.map(renderChampion)}
+				</Champions>
+				:
+				<Champions inline={false}>
+					{champions.map(renderChampion)}
+				</Champions>
+			}
 		</DeckDiv>
 	)
 };
