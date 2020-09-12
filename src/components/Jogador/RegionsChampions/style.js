@@ -1,47 +1,28 @@
 import styled from 'styled-components';
 
-export const TimeRegionsChampions = styled.div`
-	width: ${props => props.theme.webcamSize*0.5}vh;
-	height: ${props => props.theme.webcamSize*1.25}vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`;
-
-export const Time = styled.div`
-	width: ${props => props.theme.webcamSize*0.5}vh;
-	height: ${props => props.theme.webcamSize*0.5}vh;
-	text-align: center;
-	background-image: linear-gradient(#4d312e, #402d2c);
-	font-size: 5vh;
-
-	img{
-		padding: 5%;
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-	}
-`;
-
 export const RegionsChampions = styled.div`
-	height: ${props => props.theme.webcamSize*0.75}vh;
+	width: ${props => props.theme.webcamSize * (props.inline ? 1.5 : 0.5)};
+	height: ${props => props.theme.webcamSize * (props.inline ? 0.25 : 0.75)}vh;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	background-image: linear-gradient(#402d2c, #2b2728);
+	flex-direction: ${props => props.inline ? 'row' : 'column'};
+	justify-content: space-between;
+	background-image: ${props => props.inline ? 'linear-gradient(\#452f2c, \#402d2c)' : 'linear-gradient(\#402d2c, \#2b2728)'};
 `;
 
 export const Regions = styled.div`
+	width: ${props => props.theme.webcamSize * (props.inline ? 0.5 : 0.5)}vh;
+	height: ${props => props.theme.webcamSize * 0.25}vh;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
+	padding: 1vh;
 `;
 
 export const Region = styled.div`
-	border-radius: 50%;
 	width: ${props => props.theme.webcamSize*0.2}vh;
 	height: ${props => props.theme.webcamSize*0.2}vh;
+	border-radius: 50%;
 	border: #6A5D3D solid 0.3vh;
 	background: #626662;
 	background: radial-gradient(circle, #626662 0%, #2a3233 35%, #161313 100%);
@@ -56,15 +37,15 @@ export const Region = styled.div`
 `;
 
 export const Champions = styled.div`
-	width: ${props => props.theme.webcamSize*0.15}vh;
-	height: ${props => props.theme.webcamSize*0.5}vh;
+	width: ${props => props.theme.webcamSize * (props.inline ? 1.0 : 0.5)}vh;
+	height: ${props => props.theme.webcamSize * (props.inline ? 0.25 : 0.5)}vh;
 	color: #ffffff;
-	padding: 0.5vh;
+	padding-top: 1vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: flex-start;
 `;
 
 export const QtdChampion = styled.h3`

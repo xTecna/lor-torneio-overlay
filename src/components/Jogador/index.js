@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-import ScoreNomeWebcam from './ScoreNomeWebcam';
-import TimeRegionsChampions from './TimeRegionsChampions';
+import ScoreNome from './ScoreNome';
+import RegionsChampions from './RegionsChampions';
 import Deck from './Deck';
-import {JogadorDecks, Jogador as JogadorDiv, Decks} from './style';
+import {JogadorDecks, Jogador as JogadorDiv, Coluna, Decks, Webcam, Time} from './style';
 
 function calculaScore(vitorias){
 	let score = 0;
@@ -29,19 +29,38 @@ const Jogador = ({webcam, jogador, atuais, bans, vitorias}) => {
 	const atual = deckAtual(atuais);
 
 	return (
-		<>
-			<JogadorDecks>
-				<JogadorDiv>
-					<ScoreNomeWebcam webcam={webcam} score={calculaScore(vitorias)} nome={jogador.nome}/>
-					<TimeRegionsChampions url_logo={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
-				</JogadorDiv>
-				<Decks>
-					<Deck status={statusCheck(0, bans, vitorias)} champions={jogador.decks[0].champions}/>
-					<Deck status={statusCheck(1, bans, vitorias)} champions={jogador.decks[1].champions}/>
-					<Deck status={statusCheck(2, bans, vitorias)} champions={jogador.decks[2].champions}/>
-				</Decks>
-			</JogadorDecks>
-		</>
+		<JogadorDecks>
+			<JogadorDiv>
+				{
+					webcam ?
+						<>
+							<Coluna>
+								<ScoreNome className="score-nome" score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<Webcam className="webcam"/>
+							</Coluna>
+							<Coluna>
+								<Time className="time"><img src={jogador.time.url_logo}/></Time>
+								<RegionsChampions className="regions-champions" inline={false} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
+							</Coluna>
+						</>
+					:
+						<>
+							<Coluna>
+								<ScoreNome className="score-nome" score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<RegionsChampions className="regions-champions" inline={true} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
+							</Coluna>
+							<Coluna>
+								<Time className="time"><img src={jogador.time.url_logo}/></Time>
+							</Coluna>
+						</>
+				}
+			</JogadorDiv>
+			<Decks>
+				<Deck status={statusCheck(0, bans, vitorias)} champions={jogador.decks[0].champions}/>
+				<Deck status={statusCheck(1, bans, vitorias)} champions={jogador.decks[1].champions}/>
+				<Deck status={statusCheck(2, bans, vitorias)} champions={jogador.decks[2].champions}/>
+			</Decks>
+		</JogadorDecks>
 	)
 };
 

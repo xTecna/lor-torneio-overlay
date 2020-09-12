@@ -336,7 +336,7 @@ const App = () => {
 		<div id="content">
 			<ThemeProvider theme={theme}>
 				<Overlay className="overlay" webcam={mostrarWebcam} nomeTorneio={nomeTorneio} faseTorneio={faseTorneio} jogador1={jogador1} jogador2={jogador2} atuais={atuais} bans={bans} vitorias={vitorias}/>
-				<Form>
+				<Form className="form">
 					<Section>
 						<SectionTitle>
 							<h3>Dados do Torneio</h3>

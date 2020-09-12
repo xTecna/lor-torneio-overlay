@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-export const ScoreNomeWebcam = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	width: ${props => props.theme.webcamSize*1.5}vh;
-	height: ${props => props.theme.webcamSize*1.25}vh;
-`;
-
 export const ScoreNome = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -36,11 +27,4 @@ export const Nome = styled.p`
 	justify-content: start;
 	align-items: center;
 	padding-left: 0.5vh;
-`;
-
-export const Webcam = styled.div`
-	width: ${props => props.theme.webcamSize*1.5}vh;
-	height: ${props => props.theme.webcamSize}vh;
-	background-color: transparent;
-	border: #6A5D3D solid 0.5vh;
 `;
