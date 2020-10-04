@@ -1,15 +1,16 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import {ThemeProvider} from 'styled-components';
+import axios from 'axios';
 import {DeckEncoder} from 'runeterra';
 import DataTable from 'react-data-table-component';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaCheck, FaStopwatch } from 'react-icons/fa';
 
-import Overlay from './components/Overlay';
+import Overlay from '../../components/Overlay';
 import {Decks, Visualizacao, Deck, Regions, Region, Champions, QtdChampion, Champion} from './style'; 
-import {Form, Section, SectionTitle, SectionContent, Subsection, SubsectionTitle, SubsectionContent, MensagemErro} from './components/Form/style';
-import factions from './factions.json';
-import champions from './champions.json';
-import players from './players.json';
+import {Form, Section, SectionTitle, SectionContent, Subsection, SubsectionTitle, SubsectionContent, MensagemErro} from '../../components/Form/style';
+import factions from '../../assets/factions.json';
+import champions from '../../assets/champions.json';
+import players from '../../assets/players.json';
 
 const theme = {
 	webcamSize: 20
@@ -17,15 +18,24 @@ const theme = {
 
 const semTime = { 'nome': '-', 'url_logo': '' };
 
-const App = () => {
+const Index = () => {
+	const [ idServidor, setIdServidor ] = useState('');
+
 	const [ mostrarWebcam, setExibeWebcam ] = useState(false);
+	const [ mostrarCronometro, setExibeCronometro ] = useState(false);
+	const [ mostrarPreferencias, setExibePreferencias ] = useState(true);
 	const [ mostrarDadosTorneio, setExibeDadosTorneio ] = useState(true);
 	const [ mostrarPartidaAtual, setExibePartidaAtual ] = useState(true);
 	const [ mostrarParticipantes, setExibeParticipantes ] = useState(true);
 	const [ mostrarTimes, setExibeTimes ] = useState(true);
+	const [ mostrarForm, setExibeForm ] = useState(true);
 
-	const [ nomeTorneio, setNomeTorneio ] = useState('Torneio Meme da Mah');
-	const [ faseTorneio, setFaseTorneio ] = useState('Oitavas-de-final');
+	const [ tempo, setTempo ] = useState(0);
+	const [ temporizador, setTemporizador ] = useState(false);
+
+	const [ nomeTorneio, setNomeTorneio ] = useState('');
+	const [ faseTorneio, setFaseTorneio ] = useState('');
+	const [ tempoLimiteTorneio, setTempoLimiteTorneio ] = useState(60);
 	const [ jogador1, setJogador1 ] = useState(players[0]);
 	const [ jogador2, setJogador2 ] = useState(players[1]);
 	const [ bans, setBans ] = useState([[false, false, false], [false, false, false]]);
@@ -43,11 +53,128 @@ const App = () => {
 	const [ urlLogoNovoTime, setUrlLogoNovoTime ] = useState('');
 	const [ mensagemErroTime, setMensagemErroTime ] = useState('');
 
+	function setDados(data){
+		localStorage.setItem('idServidor', data._id);
+		setIdServidor(data._id);
+		setExibeWebcam(data.webcam);
+		setExibeCronometro(data.cronometro);
+		setNomeTorneio(data.nomeTorneio);
+		setFaseTorneio(data.faseTorneio);
+		setTempo(data.tempo);
+		setTempoLimiteTorneio(data.tempoLimiteTorneio);
+		setJogador1(data.jogador1);
+		setJogador2(data.jogador2);
+		setJogadores(data.jogadores);
+		setTimes(data.times);
+		setAtuais([data.atuais1, data.atuais2]);
+		setBans([data.bans1, data.bans2]);
+		setVitorias([data.vitorias1, data.vitorias2]);
+	}
+	
+	function criaIdServidor(){
+		axios({
+			method: 'post',
+			url: 'http://localhost:3030/',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			data: {
+				"webcam": mostrarWebcam,
+				"cronometro": mostrarCronometro,
+				"nomeTorneio": nomeTorneio,
+				"faseTorneio": faseTorneio,
+				"tempo": tempo,
+				"tempoLimite": tempoLimiteTorneio,
+				"jogador1": jogador1,
+				"jogador2": jogador2,
+				"jogadores": jogadores,
+				"times": times,
+				"atuais1": atuais[0],
+				"bans1": bans[0],
+				"vitorias1": vitorias[0],
+				"atuais2": atuais[1],
+				"bans2": bans[1],
+				"vitorias2": vitorias[1]
+			}
+		}).then(response => {
+			setDados(response.data);
+		}).catch(error => console.log(error));
+	}
+
+	function carregaDados(){
+		if (localStorage.getItem('idServidor')){
+			const id = localStorage.getItem('idServidor');
+
+			axios({
+				method: 'get',
+				url: `http://localhost:3030/${id}`
+			}).then(response =>{
+				setDados(response.data);
+			}).catch(error => console.log(error));
+		}else{
+			criaIdServidor();
+		}
+	}
+
+	function salvaDados(){
+		axios({
+			method: 'put',
+			url: `http://localhost:3030/${idServidor}`,
+			headers: {
+				"Content-Type": "application/json"
+			},
+			data: {
+				"webcam": mostrarWebcam,
+				"cronometro": mostrarCronometro,
+				"nomeTorneio": nomeTorneio,
+				"faseTorneio": faseTorneio,
+				"tempo": tempo,
+				"tempoLimite": tempoLimiteTorneio,
+				"jogador1": jogador1,
+				"jogador2": jogador2,
+				"jogadores": jogadores,
+				"times": times,
+				"atuais1": atuais[0],
+				"bans1": bans[0],
+				"vitorias1": vitorias[0],
+				"atuais2": atuais[1],
+				"bans2": bans[1],
+				"vitorias2": vitorias[1]
+			}
+		}).catch(error => console.log(error));
+	}
+
 	function toggleWebcam(){
 		setExibeWebcam((atual) => {
 			return !atual;
 		});
 	}
+
+	function toggleCronometro(){
+		setExibeCronometro((atual) => {
+			return !atual;
+		});
+	}
+
+	useEffect(() => {
+		carregaDados();
+	}, []);
+
+	useEffect(() => {
+		salvaDados();
+	}, [mostrarWebcam, mostrarCronometro, nomeTorneio, faseTorneio, tempo, tempoLimiteTorneio, jogador1, jogador2, jogadores, times, atuais, vitorias, bans]);
+	
+	useEffect(() => {
+		let interval = null;
+		if (temporizador){
+			interval = setInterval(() => {
+				setTempo(tempo => tempo + 1);
+			}, 1000);
+		} else if (!temporizador && tempo !== 0){
+			clearInterval(interval);
+		}
+		return () => clearInterval(interval);
+	}, [temporizador, tempo]);
 
 	const [ jogadorQuery, setJogadorQuery ] = useState('');
 	const jogadoresVisiveis = useMemo(() => jogadores.filter((value) => value.nome.toLowerCase().includes(jogadorQuery.toLowerCase())), [jogadores, jogadorQuery]);
@@ -92,6 +219,18 @@ const App = () => {
 			selector: 'deck3',
 			sortable: false,
 			cell: row => renderDeck(row.decks[2])
+		},
+		{
+			name: 'Jogador 1',
+			selector: 'jogador1',
+			sortable: false,
+			cell: row => <button className="botao-jogador" onClick={() => mudaJogador1(row.nome)}><FaCheck/></button>
+		},
+		{
+			name: 'Jogador 2',
+			selector: 'jogador2',
+			sortable: false,
+			cell: row => <button className="botao-jogador" onClick={() => mudaJogador2(row.nome)}><FaCheck/></button>
 		}
 	];
 
@@ -146,6 +285,27 @@ const App = () => {
 		setFaseTorneio(event.target.value);
 	}
 
+	function mudaTempoLimiteTorneio(event){
+		setTempoLimiteTorneio(event.target.value);
+	}
+
+	function toggleTemporizador(){
+		setTemporizador((atual) => {
+			return !atual;
+		});
+	}
+
+	function reiniciaTemporizador(){
+		setTempo(0);
+		setTemporizador(false);
+	}
+
+	function togglePreferencias(event){
+		setExibePreferencias((atual) => {
+			return !atual;
+		});
+	}
+
 	function toggleDadosTorneio(event){
 		setExibeDadosTorneio((atual) => {
 			return !atual;
@@ -166,6 +326,12 @@ const App = () => {
 
 	function toggleTimes(event){
 		setExibeTimes((atual) => {
+			return !atual;
+		});
+	}
+
+	function toggleForm(event){
+		setExibeForm((atual) => {
 			return !atual;
 		});
 	}
@@ -191,6 +357,20 @@ const App = () => {
 		let novo = [...vitorias];
 		novo[jogador][deck] = !novo[jogador][deck];
 		setVitorias(novo);
+	}
+
+	function mudaJogador1(nome){
+		let jogador = jogadores.find((value) => value.nome == nome);
+		if (jogador !== undefined){
+			setJogador1(jogador);
+		}
+	}
+	
+	function mudaJogador2(nome){
+		let jogador = jogadores.find((value) => value.nome == nome);
+		if (jogador !== undefined){
+			setJogador2(jogador);
+		}
 	}
 
 	function mudaTimeNovoJogador(event){
@@ -335,30 +515,52 @@ const App = () => {
 	return (
 		<div id="content">
 			<ThemeProvider theme={theme}>
-				<Overlay className="overlay" webcam={mostrarWebcam} nomeTorneio={nomeTorneio} faseTorneio={faseTorneio} jogador1={jogador1} jogador2={jogador2} atuais={atuais} bans={bans} vitorias={vitorias}/>
+				<Overlay className="overlay" webcam={mostrarWebcam} cronometro={mostrarCronometro} toggleForm={toggleForm} nomeTorneio={nomeTorneio} faseTorneio={faseTorneio} tempo={tempo} tempoLimiteTorneio={tempoLimiteTorneio*60} jogador1={jogador1} jogador2={jogador2} atuais={atuais} bans={bans} vitorias={vitorias}/>
+				{ mostrarForm &&
 				<Form className="form">
+					<p>ID da sessão: {idServidor}</p>
+					<Section>
+						<SectionTitle>
+							<h3>Preferências</h3>
+							<button onClick={togglePreferencias}>{ mostrarPreferencias ? '-' : '+'}</button>
+						</SectionTitle>
+						{ mostrarPreferencias && 
+							<SectionContent>
+								<input type="checkbox" id="webcam" checked={mostrarWebcam} onChange={() => toggleWebcam()}/><label for="webcam">Exibir webcam dos jogadores?</label>
+								<input type="checkbox" id="cronometro" checked={mostrarCronometro} onChange={() => toggleCronometro()}/><label for="cronometro">Exibir cronômetro?</label>
+							</SectionContent>
+						}
+					</Section>
 					<Section>
 						<SectionTitle>
 							<h3>Dados do Torneio</h3>
 							<button onClick={toggleDadosTorneio}>{ mostrarDadosTorneio ? '-' : '+'}</button>
 						</SectionTitle>
-						{ mostrarDadosTorneio ? 
+						{ mostrarDadosTorneio && 
 							<SectionContent>
 								<label for="nome_torneio">Nome:</label>
 								<input type="text" id="nome_torneio" value={nomeTorneio} onChange={mudaNomeTorneio}></input>
 								<label for="fase_torneio">Fase:</label>
 								<input type="text" id="fase_torneio" value={faseTorneio} onChange={mudaFaseTorneio}></input>
-								<input type="checkbox" id="webcam" onChange={() => toggleWebcam()}/><label for="webcam">Exibir webcam dos jogadores?</label>
+								<label for="tempo_limite_torneio">Tempo limite de cada partida: (em minutos)</label>
+								<input type="text" id="tempo_limite_torneio" value={tempoLimiteTorneio} onChange={mudaTempoLimiteTorneio}></input>
 							</SectionContent>
-						  : null }
+						}
 					</Section>
 					<Section>
 						<SectionTitle>
 							<h3>Partida Atual</h3>
 							<button onClick={togglePartidaAtual}>{ mostrarPartidaAtual ? '-' : '+'}</button>
 						</SectionTitle>
-						{ mostrarPartidaAtual ?
+						{ mostrarPartidaAtual &&
 							<SectionContent className="by-row">
+								{ mostrarCronometro &&
+									<>
+										<p><FaStopwatch/> Cronômetro:</p><br/>
+										<button onClick={() => toggleTemporizador()}>{temporizador ? "Parar" : (tempo == 0 ? "Iniciar" : "Retomar")}</button>
+										<button onClick={() => reiniciaTemporizador()}>Reinciar</button>
+									</>
+								}
 								<Subsection>
 									<SubsectionTitle>
 										<h5>Jogador 1</h5>
@@ -390,14 +592,14 @@ const App = () => {
 									</SubsectionContent>
 								</Subsection>
 							</SectionContent>
-						 : null }
+						}
 					</Section>
 					<Section>
 						<SectionTitle>
 							<h3>Participantes do Torneio</h3>
 							<button onClick={toggleParticipantes}>{ mostrarParticipantes ? '-' : '+'}</button>
 						</SectionTitle>
-						{ mostrarParticipantes ?
+						{ mostrarParticipantes &&
 							<SectionContent>
 								<label for="pesquisar_jogador">Pesquisar:</label>
 								<input type="text" name="pesquisar_jogador" value={jogadorQuery} onChange={mudaJogadorQuery}></input>
@@ -427,14 +629,14 @@ const App = () => {
 								<MensagemErro>{mensagemErroJogador}</MensagemErro>
 								<button onClick={cadastrarNovoJogador}>Cadastrar novo jogador</button>
 							</SectionContent>
-						 : null }
+						}
 					</Section>
 					<Section>
 						<SectionTitle>
 							<h3>Times</h3>
 							<button onClick={toggleTimes}>{ mostrarTimes ? '-' : '+'}</button>
 						</SectionTitle>
-						{ mostrarTimes ?
+						{ mostrarTimes &&
 							<SectionContent>
 								<label for="pesquisar_time">Pesquisar:</label>
 								<input type="text" name="pesquisar_time" value={timeQuery} onChange={mudaTimeQuery}></input>
@@ -455,12 +657,13 @@ const App = () => {
 								<MensagemErro>{mensagemErroTime}</MensagemErro>
 								<button onClick={cadastrarNovoTime}>Cadastrar novo time</button>
 							</SectionContent>
-						 : null }
+						}
 					</Section>
 				</Form>
+				}
 			</ThemeProvider>
 		</div>
 	)
 }
 
-export default App;
+export default Index;

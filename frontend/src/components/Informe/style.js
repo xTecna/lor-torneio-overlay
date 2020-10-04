@@ -15,9 +15,3 @@ export const Fase = styled.p`
 	font-size: 2.5vh;
 	color: #FFFFFF;
 `;
-
-export const Tempo = styled.p`
-	font-size: 2.5vh;
-	color: #FFFFFF;
-	text-align: center;
-`;

@@ -25,7 +25,7 @@ function deckAtual(atuais){
 	}
 }
 
-const Jogador = ({webcam, jogador, atuais, bans, vitorias}) => {
+const Jogador = ({toggleForm, webcam, jogador, atuais, bans, vitorias}) => {
 	const atual = deckAtual(atuais);
 
 	return (
@@ -35,22 +35,22 @@ const Jogador = ({webcam, jogador, atuais, bans, vitorias}) => {
 					webcam ?
 						<>
 							<Coluna>
-								<ScoreNome className="score-nome" score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<ScoreNome className="score-nome" toggleForm={toggleForm} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<Webcam className="webcam"/>
 							</Coluna>
 							<Coluna>
-								<Time className="time"><img src={jogador.time.url_logo}/></Time>
+								<Time className="time">{jogador.time.url_logo && <img src={jogador.time.url_logo}/>}</Time>
 								<RegionsChampions className="regions-champions" inline={false} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
 						</>
 					:
 						<>
 							<Coluna>
-								<ScoreNome className="score-nome" score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<ScoreNome className="score-nome" toggleForm={toggleForm} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<RegionsChampions className="regions-champions" inline={true} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
 							<Coluna>
-								<Time className="time"><img src={jogador.time.url_logo}/></Time>
+								<Time className="time">{jogador.time.url_logo && <img src={jogador.time.url_logo}/>}</Time>
 							</Coluna>
 						</>
 				}
