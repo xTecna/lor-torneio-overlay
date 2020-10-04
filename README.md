@@ -16,4 +16,4 @@
   Logo abaixo você pode ver um exemplo de tela do overlay.
 </p>
 
-<p align="center"><img alt="Exemplo de tela" src="./src/assets/ExemploTela.png"></p>
+<p align="center"><img alt="Exemplo de tela" src="./frontend/src/assets/ExemploTela.png"></p>
