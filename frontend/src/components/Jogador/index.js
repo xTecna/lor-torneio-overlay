@@ -35,23 +35,25 @@ const Jogador = ({toggleForm, webcam, jogador, atuais, bans, vitorias}) => {
 					webcam ?
 						<>
 							<Coluna>
-								<ScoreNome className="score-nome" toggleForm={toggleForm} score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<ScoreNome className="score-nome" toggleForm={toggleForm} time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<Webcam className="webcam"/>
 							</Coluna>
 							<Coluna>
-								<Time className="time">{jogador.time.url_logo && <img src={jogador.time.url_logo}/>}</Time>
-								<RegionsChampions className="regions-champions" inline={false} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
+								{ jogador.time.url_logo && <Time className="time"><img src={jogador.time.url_logo}/></Time> }
+								<RegionsChampions className="regions-champions" inline={false} time={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
 						</>
 					:
 						<>
 							<Coluna>
-								<ScoreNome className="score-nome" toggleForm={toggleForm} score={calculaScore(vitorias)} nome={jogador.nome}/>
-								<RegionsChampions className="regions-champions" inline={true} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
+								<ScoreNome className="score-nome" toggleForm={toggleForm} time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<RegionsChampions className="regions-champions" inline={true} time={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
-							<Coluna>
-								<Time className="time">{jogador.time.url_logo && <img src={jogador.time.url_logo}/>}</Time>
-							</Coluna>
+							{ jogador.time.url_logo &&
+								<Coluna>
+									<Time className="time"><img src={jogador.time.url_logo}/></Time>
+								</Coluna>
+							}
 						</>
 				}
 			</JogadorDiv>

@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
 export const JogadorDecks = styled.div`
+	width: ${props => props.theme.webcamSize*2}px;
+
 	display: flex;
 	flex-direction: column;
 `;
 
 export const Jogador = styled.div`
+	width: ${props => props.theme.webcamSize*2}px;
+	
 	display: flex;
 	flex-direction: row;
 `;
@@ -16,15 +20,17 @@ export const Coluna = styled.div`
 `;
 
 export const Decks = styled.div`
+	width: ${props => props.theme.webcamSize*2}vh;
+	height: ${props => props.theme.webcamSize*0.4}vh;
+
 	display: flex;
 	flex-direction: row;
-	width: ${props => props.theme.webcamSize*2}vh;
-	height: ${props => props.theme.webcamSize*0.35}vh;
 `;
 
 export const Webcam = styled.div`
 	width: ${props => props.theme.webcamSize*1.5}vh;
 	height: ${props => props.theme.webcamSize}vh;
+
 	background-color: transparent;
 	border: #6A5D3D solid 0.5vh;
 `;
@@ -32,8 +38,9 @@ export const Webcam = styled.div`
 export const Time = styled.div`
 	width: ${props => props.theme.webcamSize*0.5}vh;
 	height: ${props => props.theme.webcamSize*0.5}vh;
+	background-color: #4d312e;
+
 	text-align: center;
-	background-image: linear-gradient(#4d312e, #402d2c);
 	font-size: 5vh;
 
 	img{
