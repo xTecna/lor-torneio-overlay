@@ -46,3 +46,17 @@ button
 	background-color: #ff0000;
 	border: #ff0000 solid 0.2vh;
 }
+
+label
+{
+	margin: 0 0.25vh;
+}
+
+input
+{
+	vertical-align: middle;
+	margin: 0 0.5vh;
+	padding: 0.5vh;
+	background-color: #ffffff;
+	border-bottom: 0.1vh solid #aaaaaa;
+}

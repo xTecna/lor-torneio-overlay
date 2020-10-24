@@ -30,6 +30,7 @@ export const Champions = styled.div`
 	border: 0.2vh solid #6A5D3D;
 	background-color: #4d312e;
 	color: #ffffff;
+	text-shadow: 0 0 5px #000000;
 	
 	display: flex;
 	flex-direction: row;

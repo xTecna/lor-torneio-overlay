@@ -42,8 +42,9 @@ export const Champions = styled.div`
 `;
 
 export const Champion = styled.div`
-	width: ${props => props.theme.webcamSize*0.2}vh;
-	height: ${props => props.theme.webcamSize*0.2}vh;
+	width: ${props => props.theme.webcamSize*(props.lotado ? 0.15 : 0.2)}vh;
+	height: ${props => props.theme.webcamSize*(props.lotado ? 0.15 : 0.2)}vh;
+	
 	border-radius: 20vh;
 	background-image: url(${props => props.img});
 	background-size: cover;

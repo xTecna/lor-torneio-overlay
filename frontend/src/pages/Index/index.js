@@ -6,8 +6,9 @@ import DataTable from 'react-data-table-component';
 import { FaTrash, FaCheck, FaStopwatch } from 'react-icons/fa';
 
 import Overlay from '../../components/Overlay';
+import SectionTitle from '../../components/Form/SectionTitle';
 import {Decks, Visualizacao, Deck, Regions, Region, Champions, QtdChampion, Champion} from './style'; 
-import {Form, Section, SectionTitle, SectionContent, Subsection, SubsectionTitle, SubsectionContent, MensagemErro} from '../../components/Form/style';
+import {Form, Section, SectionContent, Subsection, SubsectionTitle, SubsectionContent, MensagemErro} from '../../components/Form/style';
 import factions from '../../assets/factions.json';
 import champions from '../../assets/champions.json';
 import players from '../../assets/players.json';
@@ -520,38 +521,35 @@ const Index = () => {
 				<Form className="form">
 					<p>ID da sessão: {idServidor}</p>
 					<Section>
-						<SectionTitle>
-							<h3>Preferências</h3>
-							<button onClick={togglePreferencias}>{ mostrarPreferencias ? '-' : '+'}</button>
-						</SectionTitle>
+						<SectionTitle title={'Preferências'} click={togglePreferencias} simbolo={mostrarPreferencias}/>
 						{ mostrarPreferencias && 
-							<SectionContent>
+							<SectionContent className="form-inline">
 								<input type="checkbox" id="webcam" checked={mostrarWebcam} onChange={() => toggleWebcam()}/><label for="webcam">Exibir webcam dos jogadores?</label>
 								<input type="checkbox" id="cronometro" checked={mostrarCronometro} onChange={() => toggleCronometro()}/><label for="cronometro">Exibir cronômetro?</label>
 							</SectionContent>
 						}
 					</Section>
 					<Section>
-						<SectionTitle>
-							<h3>Dados do Torneio</h3>
-							<button onClick={toggleDadosTorneio}>{ mostrarDadosTorneio ? '-' : '+'}</button>
-						</SectionTitle>
+					<SectionTitle title={'Dados do torneio'} click={toggleDadosTorneio} simbolo={mostrarDadosTorneio}/>
 						{ mostrarDadosTorneio && 
 							<SectionContent>
-								<label for="nome_torneio">Nome:</label>
-								<input type="text" id="nome_torneio" value={nomeTorneio} onChange={mudaNomeTorneio}></input>
-								<label for="fase_torneio">Fase:</label>
-								<input type="text" id="fase_torneio" value={faseTorneio} onChange={mudaFaseTorneio}></input>
-								<label for="tempo_limite_torneio">Tempo limite de cada partida: (em minutos)</label>
-								<input type="text" id="tempo_limite_torneio" value={tempoLimiteTorneio} onChange={mudaTempoLimiteTorneio}></input>
+								<div>
+									<label for="nome_torneio">Nome:</label>
+									<input type="text" id="nome_torneio" value={nomeTorneio} onChange={mudaNomeTorneio}></input>
+								</div>
+								<div>
+									<label for="fase_torneio">Fase:</label>
+									<input type="text" id="fase_torneio" value={faseTorneio} onChange={mudaFaseTorneio}></input>
+								</div>
+								<div>
+									<label for="tempo_limite_torneio">Tempo limite de cada partida: (em minutos)</label>
+									<input type="text" id="tempo_limite_torneio" value={tempoLimiteTorneio} onChange={mudaTempoLimiteTorneio}></input>
+								</div>
 							</SectionContent>
 						}
 					</Section>
 					<Section>
-						<SectionTitle>
-							<h3>Partida Atual</h3>
-							<button onClick={togglePartidaAtual}>{ mostrarPartidaAtual ? '-' : '+'}</button>
-						</SectionTitle>
+					<SectionTitle title={'Partida atual'} click={togglePartidaAtual} simbolo={mostrarPartidaAtual}/>
 						{ mostrarPartidaAtual &&
 							<SectionContent className="by-row">
 								{ mostrarCronometro &&
@@ -595,10 +593,7 @@ const Index = () => {
 						}
 					</Section>
 					<Section>
-						<SectionTitle>
-							<h3>Participantes do Torneio</h3>
-							<button onClick={toggleParticipantes}>{ mostrarParticipantes ? '-' : '+'}</button>
-						</SectionTitle>
+						<SectionTitle title={'Participantes'} click={toggleParticipantes} simbolo={mostrarParticipantes}/>
 						{ mostrarParticipantes &&
 							<SectionContent>
 								<label for="pesquisar_jogador">Pesquisar:</label>
@@ -632,10 +627,7 @@ const Index = () => {
 						}
 					</Section>
 					<Section>
-						<SectionTitle>
-							<h3>Times</h3>
-							<button onClick={toggleTimes}>{ mostrarTimes ? '-' : '+'}</button>
-						</SectionTitle>
+						<SectionTitle title={'Times'} click={toggleTimes} simbolo={mostrarTimes}/>
 						{ mostrarTimes &&
 							<SectionContent>
 								<label for="pesquisar_time">Pesquisar:</label>
