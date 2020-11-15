@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const SectionTitle = styled.h1`
-	width: 25%;
+export const SectionTitle = styled.div`
+	width: 50vh;
 	height: 5vh;
 
 	color: #ffffff;

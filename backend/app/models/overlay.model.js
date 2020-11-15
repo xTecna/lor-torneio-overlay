@@ -10,6 +10,7 @@ module.exports = mongoose => {
 	})
 
 	const Deck = mongoose.Schema({
+		code: String,
 		regions: [String],
 		champions: [Champion]
 	});
