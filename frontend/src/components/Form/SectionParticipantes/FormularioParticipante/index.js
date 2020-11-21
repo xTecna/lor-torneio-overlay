@@ -25,15 +25,14 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				{code: '', regions: [], champions: []}]});
 	const [ mensagemErro, setMensagemErro ] = useState();
 
-	function carregaJogador(){
-		if (mostrar){
-			setJogador(jogadorAntigo);
-		}
-	}
-
 	useEffect(() => {
+		function carregaJogador(){
+			if (mostrar){
+				setJogador(jogadorAntigo);
+			}
+		}
 		carregaJogador();
-	}, []);
+	}, [mostrar, jogadorAntigo]);
 
 	function buscaTime(nome){
 		return times.filter((time) => time.nome === nome)[0];

@@ -13,15 +13,14 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 	const [ time, setTime ] = useState({nome: '', url_logo: ''});
 	const [ mensagemErro, setMensagemErro ] = useState();
 
-	function carregaTime(){
-		if (mostrar){
-			setTime(timeAntigo);
-		}
-	}
-
 	useEffect(() => {
+		function carregaTime(){
+			if (mostrar){
+				setTime(timeAntigo);
+			}
+		}
 		carregaTime();
-	}, [])
+	}, [mostrar, timeAntigo]);
 
 	function saveOrUpdateTime(time){
 		if (time.nome){

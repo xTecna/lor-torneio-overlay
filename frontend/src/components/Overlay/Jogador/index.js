@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {useSaveState} from '../../../context/SaveState';
+
 import ScoreNome from './ScoreNome';
 import RegionsChampions from './RegionsChampions';
 import Deck from './Deck';
@@ -25,7 +27,11 @@ function deckAtual(atuais){
 	}
 }
 
-const Jogador = ({toggleForm, webcam, jogador, atuais, bans, vitorias}) => {
+const Jogador = ({jogador, atuais, bans, vitorias}) => {
+
+	const {saveState} = useSaveState();
+	const {webcam} = saveState;
+
 	const atual = deckAtual(atuais);
 
 	return (
@@ -35,7 +41,7 @@ const Jogador = ({toggleForm, webcam, jogador, atuais, bans, vitorias}) => {
 					webcam ?
 						<>
 							<Coluna time={jogador.time.url_logo}>
-								<ScoreNome inline={false} className="score-nome" toggleForm={toggleForm} time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<ScoreNome inline={false} className="score-nome" time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<Webcam className="webcam"/>
 							</Coluna>
 							<Coluna time={jogador.time.url_logo}>
@@ -46,7 +52,7 @@ const Jogador = ({toggleForm, webcam, jogador, atuais, bans, vitorias}) => {
 					:
 						<>
 							<Coluna time={jogador.time.url_logo}>
-								<ScoreNome inline={true} className="score-nome" toggleForm={toggleForm} time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
+								<ScoreNome inline={true} className="score-nome" time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<RegionsChampions className="regions-champions" inline={true} time={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
 							{ jogador.time.url_logo &&

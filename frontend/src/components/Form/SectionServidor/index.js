@@ -5,7 +5,7 @@ import {FiExternalLink, FiCopy} from 'react-icons/fi';
 import {Section, SectionContent} from '../style';
 import {Botoes, Botao} from './style';
 
-const SectionServidor = ({idServidor, mudaIdServidor}) => {
+const SectionServidor = ({idServidor}) => {
 	const textRef = useRef(null);
 
 	function copiar(e) {
@@ -19,12 +19,10 @@ const SectionServidor = ({idServidor, mudaIdServidor}) => {
 			<SectionContent className="form-inline">
 				<div>
 					<label htmlFor="id_servidor">ID da sessão:</label>
-					<input type="text" id="id_servidor" value={idServidor}
-						onChange={e => mudaIdServidor(e.target.value)}
-						ref={textRef}></input>
+					<input type="text" id="id_servidor" value={idServidor} ref={textRef} readOnly/>
 				</div>
 					<Botoes>
-						<Link to={`/${idServidor}`}>
+						<Link to={`/${idServidor}`} target='_blank'>
 							<Botao><FiExternalLink/></Botao>
 						</Link>
 						<Botao onClick={(e) => copiar(e)}><FiCopy/></Botao>
