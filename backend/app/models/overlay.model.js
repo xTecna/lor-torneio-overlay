@@ -30,7 +30,7 @@ module.exports = mongoose => {
 				nomeTorneio: String,
 				faseTorneio: String,
 				tempo: Number,
-				tempoLimite: Number,
+				tempoLimiteTorneio: Number,
 				jogador1: Jogador,
 				jogador2: Jogador,
 				jogadores: [Jogador],

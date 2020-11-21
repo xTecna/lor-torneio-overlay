@@ -17,7 +17,7 @@ exports.create = (request, response) => {
 		nomeTorneio: dados.nomeTorneio,
 		faseTorneio: dados.faseTorneio,
 		tempo: dados.tempo,
-		tempoLimite: dados.tempoLimite,
+		tempoLimiteTorneio: dados.tempoLimiteTorneio,
 		jogador1: dados.jogador1,
 		jogador2: dados.jogador2,
 		jogadores: dados.jogadores,
