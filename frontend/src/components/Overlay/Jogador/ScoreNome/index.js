@@ -10,9 +10,9 @@ function tamanhoNome(nome){
 
 const ScoreNome = ({inline, time, score, nome}) => {	
 	return (
-		<ScoreNomeDiv>
-			<Score>{score}</Score>
-			<Nome inline={inline} tamanhoNome={tamanhoNome(nome)} time={time}>{nome}</Nome>
+		<ScoreNomeDiv className="score-nome">
+			<Score className="score">{score}</Score>
+			<Nome className="nome" inline={inline} tamanhoNome={tamanhoNome(nome)} time={time}>{nome}</Nome>
 		</ScoreNomeDiv>
 	);
 };

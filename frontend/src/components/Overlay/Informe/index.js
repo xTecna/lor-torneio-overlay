@@ -10,9 +10,9 @@ const Informe = () => {
 	const {nomeTorneio: nome, faseTorneio: fase} = saveState;
 
 	return (
-		<InformeDiv>
-			<Nome>{nome}</Nome>
-			<Fase>{fase}</Fase>
+		<InformeDiv className="informe">
+			<Nome className="nome">{nome}</Nome>
+			<Fase className="fase">{fase}</Fase>
 			<Cronometro/>
 		</InformeDiv>
 	);

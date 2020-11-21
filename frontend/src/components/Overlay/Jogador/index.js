@@ -35,35 +35,35 @@ const Jogador = ({jogador, atuais, bans, vitorias}) => {
 	const atual = deckAtual(atuais);
 
 	return (
-		<JogadorDecks>
-			<JogadorDiv>
+		<JogadorDecks className="jogador-decks">
+			<JogadorDiv className="jogador">
 				{
 					webcam ?
 						<>
-							<Coluna time={jogador.time.url_logo}>
-								<ScoreNome inline={false} className="score-nome" time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
+							<Coluna className="coluna" time={jogador.time.url_logo}>
+								<ScoreNome inline={false} time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<Webcam className="webcam"/>
 							</Coluna>
-							<Coluna time={jogador.time.url_logo}>
+							<Coluna className="coluna" time={jogador.time.url_logo}>
 								{ jogador.time.url_logo && <Time className="time"><img src={jogador.time.url_logo} alt={jogador.time.nome}/></Time> }
-								<RegionsChampions className="regions-champions" inline={false} time={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
+								<RegionsChampions inline={false} time={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
 						</>
 					:
 						<>
-							<Coluna time={jogador.time.url_logo}>
+							<Coluna className="coluna" time={jogador.time.url_logo}>
 								<ScoreNome inline={true} className="score-nome" time={jogador.time.url_logo} score={calculaScore(vitorias)} nome={jogador.nome}/>
 								<RegionsChampions className="regions-champions" inline={true} time={jogador.time.url_logo} regions={jogador.decks[atual].regions} champions={jogador.decks[atual].champions}/>
 							</Coluna>
 							{ jogador.time.url_logo &&
-								<Coluna time={jogador.time.url_logo}>
+								<Coluna className="coluna" time={jogador.time.url_logo}>
 									<Time className="time"><img src={jogador.time.url_logo} alt={jogador.time.nome}/></Time>
 								</Coluna>
 							}
 						</>
 				}
 			</JogadorDiv>
-			<Decks>
+			<Decks className="decks">
 				{
 					jogador.decks.map((deck, index) => {
 						return <Deck key={index} status={statusCheck(index, bans, vitorias)} champions={deck.champions}/>

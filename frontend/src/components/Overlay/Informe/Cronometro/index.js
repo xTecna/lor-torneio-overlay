@@ -33,7 +33,7 @@ const Cronometro = () => {
 	}
 
 	if (cronometro){
-		return <Tempo limite={estadoLimite}>{converte(tempo)}</Tempo>;
+		return <Tempo className="cronometro" limite={estadoLimite}>{converte(tempo)}</Tempo>;
 	}else{
 		return null;
 	}

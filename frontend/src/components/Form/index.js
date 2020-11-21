@@ -8,11 +8,11 @@ import SectionPartidaAtual from './SectionPartidaAtual';
 import SectionParticipantes from './SectionParticipantes';
 import SectionTimes from './SectionTimes';
 
-const Form = ({idServidor, mudaIdServidor}) => {
+const Form = ({idServidor, setIdServidor, setDados}) => {
 
 	return (
 		<FormDiv>
-			<SectionServidor idServidor={idServidor} mudaIdServidor={mudaIdServidor}/>
+			<SectionServidor idServidor={idServidor} setIdServidor={setIdServidor} setDados={setDados}/>
 			<SectionPreferencias/>
 			<SectionDadosTorneio/>
 			<SectionPartidaAtual/>

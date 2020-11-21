@@ -53,7 +53,7 @@ async function carregaDadosDoBanco(id, time, setIdServidor, setSaveState, setTim
 
 const Visual = (props) => {
 	const [ idServidor, setIdServidor ] = useState('');
-	const { saveState, setSaveState } = useSaveState();
+	const { setSaveState } = useSaveState();
 	const { time, setTime } = useTime();
 
 	useEffect(() => {

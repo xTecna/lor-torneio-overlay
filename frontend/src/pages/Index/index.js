@@ -27,6 +27,8 @@ function serializaDados(saveState, tempo){
 		atuais2: saveState.atuais[1],
 		bans2: saveState.bans[1],
 		vitorias2: saveState.vitorias[1],
+		jogadores: saveState.jogadores,
+		times: saveState.times,
 		tempo: tempo
 	};
 }
@@ -203,7 +205,8 @@ const Index = () => {
 		<div id="content">
 			<ThemeProvider theme={theme}>
 				<Overlay className="overlay"/>
-				<Form className="form" idServidor={idServidor}/>
+				<Form className="form" idServidor={idServidor} setIdServidor={setIdServidor}
+									   setDados={setDados}/>
 			</ThemeProvider>
 		</div>
 	)
