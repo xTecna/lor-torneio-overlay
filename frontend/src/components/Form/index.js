@@ -15,7 +15,6 @@ const Form = ({idServidor, setIdServidor, setDados}) => {
 		<FormDiv>
 			<SectionCreditos/>
 			<SectionServidor idServidor={idServidor} setIdServidor={setIdServidor} setDados={setDados}/>
-			{/* <SectionInformacoes/> */}
 			<SectionPreferencias/>
 			<SectionDadosTorneio/>
 			<SectionPartidaAtual/>

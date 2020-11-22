@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-export const Creditos = styled.div`
+export const CreditosInformacao = styled.div`
 	padding: 1vh;
 	padding-bottom: 0vh;
+`;
 
+export const Creditos = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

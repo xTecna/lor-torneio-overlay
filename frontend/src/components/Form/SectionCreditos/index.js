@@ -1,12 +1,11 @@
 import React from 'react';
 import {FaGithub, FaTwitch, FaTwitter, FaDiscord} from 'react-icons/fa';
 
-import {Section} from '../style';
-import {Creditos, RedesSociais} from './style';
+import {CreditosInformacao, Creditos, RedesSociais} from './style';
 
 const SectionCreditos = () => {
 	return (
-		<Section>
+		<CreditosInformacao>
 			<Creditos>
 				<p>Feito com <span role="img" aria-label="amor">❤️</span> por xTecna.</p>
 				<RedesSociais>
@@ -16,7 +15,8 @@ const SectionCreditos = () => {
 					<a href="https://discord.gg/7UfQTkc" target="_blank" rel="noopener noreferrer"><FaDiscord/></a>
 				</RedesSociais>
 			</Creditos>
-		</Section>
+			<p>Temos suporte a CSS customizado. Por favor, inspecione o overlay para ver as classes e use !important no Custom CSS do seu programa de streaming.</p>
+		</CreditosInformacao>
 	);
 };
 
