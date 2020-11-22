@@ -39,7 +39,7 @@ const Visual = (props) => {
 		try{
 			const response = await axios({
 				method: 'get',
-				url: `http://localhost:3030/${id}`
+				url: `https://lor-torneio-overlay.herokuapp.com/${id}`
 			});
 
 			if (response.status === 200){

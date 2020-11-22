@@ -46,7 +46,7 @@ const Index = () => {
 			if (localStorage.getItem('idServidor')){
 				await axios({
 					method: 'put',
-					url: `http://localhost:3030/${idServidor}`,
+					url: `https://lor-torneio-overlay.herokuapp.com/${idServidor}`,
 					headers: {
 						"Content-Type": "application/json"
 					},
@@ -96,7 +96,7 @@ const Index = () => {
 		{
 			const response = await axios({
 				method: 'post',
-				url: 'http://localhost:3030/',
+				url: 'https://lor-torneio-overlay.herokuapp.com/',
 				headers: {
 					"Content-Type": "application/json"
 				},
@@ -124,7 +124,7 @@ const Index = () => {
 
 				const response = await axios({
 					method: 'get',
-					url: `http://localhost:3030/${idQuery}`
+					url: `https://lor-torneio-overlay.herokuapp.com/${idQuery}`
 				});
 
 				if (response.status === 200){
