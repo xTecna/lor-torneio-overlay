@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Form as FormDiv} from './style';
+import SectionCreditos from './SectionCreditos';
 import SectionServidor from './SectionServidor';
 import SectionPreferencias from './SectionPreferencias';
 import SectionDadosTorneio from './SectionDadosTorneio';
@@ -12,7 +13,9 @@ const Form = ({idServidor, setIdServidor, setDados}) => {
 
 	return (
 		<FormDiv>
+			<SectionCreditos/>
 			<SectionServidor idServidor={idServidor} setIdServidor={setIdServidor} setDados={setDados}/>
+			{/* <SectionInformacoes/> */}
 			<SectionPreferencias/>
 			<SectionDadosTorneio/>
 			<SectionPartidaAtual/>
