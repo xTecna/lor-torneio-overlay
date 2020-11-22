@@ -2,24 +2,24 @@ module.exports = mongoose => {
 	const Time = mongoose.Schema({
 		nome: String,
 		url_logo: String
-	});
+	}, { _id: false });
 
 	const Champion = mongoose.Schema({
 		nome: String,
 		qtd: Number
-	})
+	}, { _id: false })
 
 	const Deck = mongoose.Schema({
 		code: String,
 		regions: [String],
 		champions: [Champion]
-	});
+	}, { _id: false });
 
 	const Jogador = mongoose.Schema({
 		nome: String,
 		time: Time,
 		decks: [Deck]
-	});
+	}, { _id: false });
 
 	const Overlay = mongoose.model(
 		"overlay",
