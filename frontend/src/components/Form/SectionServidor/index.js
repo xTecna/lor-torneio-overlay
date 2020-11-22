@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {FiExternalLink, FiCopy} from 'react-icons/fi';
-import {FaPencilAlt, FaCheck} from 'react-icons/fa';
+import {FaRegEye, FaRegEyeSlash, FaPencilAlt, FaCheck} from 'react-icons/fa';
 import {RiCloseLine} from 'react-icons/ri';
 
 import {useSaveState} from '../../../context/SaveState';
@@ -18,6 +18,7 @@ const SectionServidor = ({idServidor, setIdServidor, setDados}) => {
 	const {time, setTime} = useTime();
 
 	const [ mostrarEditar, setMostrarEditar ] = useState();
+	const [ mostrarIdServidor, setMostrarIdServidor ] = useState();
 	const [ novoIdServidor, setNovoIdServidor ] = useState();
 	const [ mensagemErro, setMensagemErro ] = useState();
 
@@ -70,9 +71,12 @@ const SectionServidor = ({idServidor, setIdServidor, setDados}) => {
 			<SectionContent className="form-inline">
 				<div>
 					<label htmlFor="id_servidor">ID da sessão:</label>
-					<input type="text" id="id_servidor" value={idServidor} ref={textRef} readOnly/>
+					<input type={mostrarIdServidor ? "text" : "password"} id="id_servidor" value={idServidor} ref={textRef} readOnly/>
 				</div>
 				<Botoes>
+					<Botao onClick={() => setMostrarIdServidor(!mostrarIdServidor)}>
+						{mostrarIdServidor ? <FaRegEyeSlash/> : <FaRegEye/>}
+					</Botao>
 					<Link to={`/${idServidor}`} target='_blank'>
 						<Botao><FiExternalLink/></Botao>
 					</Link>
