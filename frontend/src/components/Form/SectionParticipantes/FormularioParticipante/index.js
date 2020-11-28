@@ -35,7 +35,11 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 	}, [mostrar, jogadorAntigo]);
 
 	function buscaTime(nome){
-		return times.filter((time) => time.nome === nome)[0];
+		return times.find((time) => time.nome === nome);
+	}
+
+	function buscaJogador(nome){
+		return jogadores.find((jogador) => jogador.nome === nome);
 	}
 
 	function mudaTime(nome){
@@ -94,6 +98,11 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 
 	function saveOrUpdateJogador(jogador){
 		if (jogador.nome && (jogador.time.nome === '' || buscaTime(jogador.time.nome))){
+			if (buscaJogador(jogador.nome)){
+				setMensagemErro('Já existe um jogador com esse nome.');
+				return;
+			}
+
 			const novosDecks = decodeDecks(jogador.decks);
 			const valido = novosDecks.filter((deck) => deck === undefined).length === 0;
 
@@ -128,11 +137,9 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				if (mostrar)	setMostrar(false);
 			}else{
 				setMensagemErro('Algum código de deck passado é inválido.');
-				return;
 			}
 		}else{
 			setMensagemErro("Nome ou time inválido.");
-			return;
 		}
 	}
 	

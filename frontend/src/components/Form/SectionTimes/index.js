@@ -19,7 +19,7 @@ const SectionTimes = () => {
 	const [ timeAntigo, setTimeAntigo ] = useState({nome: '', url_logo: ''});
 
 	function buscaTime(nome){
-		return times.filter((time) => time.nome === nome)[0];
+		return times.find((time) => time.nome === nome);
 	}
 
 	function apresentaFormulario(nome){

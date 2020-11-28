@@ -60,7 +60,7 @@ const TabelaParticipantes = ({jogadorQuery, apresentaFormulario}) => {
 	}
 
 	function buscaJogador(nome){
-		return jogadores.filter((jogador) => jogador.nome === nome)[0];
+		return jogadores.find((jogador) => jogador.nome === nome);
 	}
 
 	const colunasParticipantes = [

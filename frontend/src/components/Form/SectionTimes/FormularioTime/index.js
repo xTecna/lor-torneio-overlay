@@ -13,6 +13,10 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 	const [ time, setTime ] = useState({nome: '', url_logo: ''});
 	const [ mensagemErro, setMensagemErro ] = useState();
 
+	function buscaTime(nome){
+		return times.find((time) => time.nome === nome);
+	}
+
 	useEffect(() => {
 		function carregaTime(){
 			if (mostrar){
@@ -41,6 +45,11 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 				});
 				setSaveState({...saveState, jogadores: novoJogadores, times: novo});
 			}else{
+				if (buscaTime(time.nome)){
+					setMensagemErro('Já existe um time com esse nome.');
+					return;
+				}
+
 				setSaveState({...saveState, times: [...times, time]});
 			}
 			setTime({nome: '', url_logo: ''});
