@@ -19,18 +19,43 @@ const Visual = (props) => {
 	function setDados(dados){
 		setIdServidor(dados._id);
 		setSaveState({
-			webcam: dados.webcam,
-			cronometro: dados.cronometro,
-			nomeTorneio: dados.nomeTorneio,
-			faseTorneio: dados.faseTorneio,
-			tempoLimiteTorneio: dados.tempoLimiteTorneio,
-			jogador1: dados.jogador1,
-			jogador2: dados.jogador2,
-			bans: [dados.bans1, dados.bans2],
-			vitorias: [dados.vitorias1, dados.vitorias2],
-			atuais: [dados.atuais1, dados.atuais2],
-			jogadores: dados.jogadores,
-			times: dados.times
+			webcam: dados.webcam || false,
+			cronometro: dados.cronometro || true,
+			nomeTorneio: dados.nomeTorneio || 'Torneio',
+			faseTorneio: dados.faseTorneio || 'Oitavas-de-final',
+			tempoLimiteTorneio: dados.tempoLimiteTorneio || 120,
+			regra: dados.regra || '',
+			jogador1: dados.jogador1 || {
+				nome: 'WNX Mafraju',
+				time: {nome: '', url_logo: ''},
+				decks: [{code:		'CECAMAIABEFRMHJGE4AQEBQWAIBAACIKAEBQABQEAEBAABYBAMAA4AQBAAKRUAICAY7AA',
+						regions:	['bilgewater', 'demacia'],
+						champions:	[{nome: 'Lucian', qtd: 3}, {nome: 'MissFortune', qtd: 3}]},
+						{code:		'CEBAIAIBBMTCSMADAEBQIHZBAUCQCAIBAMLB4KQBAMAQEAIDAMCACAIDGUAQEAICAEAQCAZT',
+						regions:	['freljord', 'noxus'],
+						champions:	[{nome: 'Ashe', qtd: 3}, {nome: 'Sejuani', qtd: 3}]},
+						{code:		'CEBQKAYBAICQMCQWAQAQKAIZFAYQIAIBBQQSOMQAAEAQCBJB',
+						regions:	['freljord', 'shadowisles'],
+						champions:	[{nome: 'Trundle', qtd: 3}, {nome: 'Tryndamere', qtd: 3}]}]
+				},
+			jogador2: dados.jogador2 || {
+				nome: 'WNX Tecna',
+				time: {nome: 'WNX', url_logo: 'https://media.discordapp.net/attachments/703593969820631050/739497322580541540/WNX.png'},
+				decks: [{code:		'CEBAIAYGAQDQQDYHAMER2IZNGM2DOPACAEBQMCIBAMESSAQBAIDAKAQDBEKFK',
+						regions:	['bilgewater', 'targon'],
+						champions:	[{nome: 'Soraka', qtd: 3}, {nome: 'TahmKench', qtd: 3}]},
+					{code:		'CEBQCAYECIDACBABBQOCOKBNAUAQGBYJCQTTOAIBAECA2AQBAEBSGAIDAQAQ',
+					regions:	['noxus', 'piltoverzaun'],
+					champions:	[{nome: 'Draven', qtd: 3}, {nome: 'Jinx', qtd: 3}]},
+					{code:		'CICACAYCCQBACAQJGEBQEAQDAYEQKAYJDMRTGVS4AIAQEAQIAIBQSKKVAEAQEAQF',
+					regions:	['ionia', 'targon'],
+					champions:	[{nome: 'Zed', qtd: 3}, {nome: 'LeeSin', qtd: 3}]}]
+				},
+			bans: [dados.bans1 || [true, false, false], dados.bans2 || [false, false, true]],
+			vitorias: [dados.vitorias1 || [false, true, false], dados.vitorias2 || [false, false, false]],
+			atuais: [dados.atuais1 || [false, false, true], dados.atuais2 || [false, true, true]],
+			jogadores: dados.jogadores || [],
+			times: dados.times || []
 		});
 		setTime({...time, tempo: dados.tempo});
 	}

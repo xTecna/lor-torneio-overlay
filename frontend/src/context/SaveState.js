@@ -9,6 +9,7 @@ export default function SaveStateProvider({children}){
 		nomeTorneio: 'Torneio',
 		faseTorneio: 'Oitavas-de-final',
 		tempoLimiteTorneio: 120,
+		regra: '',
 		jogador1: {
 			nome: 'WNX Mafraju',
 			time: {nome: '', url_logo: ''},

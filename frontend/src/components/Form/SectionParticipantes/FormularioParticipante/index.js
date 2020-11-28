@@ -15,8 +15,14 @@ function renderTime(time, index){
 
 const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jogadorAntigo}) => {
 
+	const regraFuncao = {
+		'Cardlock': checkCardlock,
+		'Regionlock': checkRegionlock,
+		'Riotlock': checkRiotlock
+	};
+
 	const { saveState, setSaveState } = useSaveState();
-	const { jogadores, times } = saveState;
+	const { regra, jogadores, times } = saveState;
 
 	const [ jogador, setJogador ] = useState({nome: '',
 		time: {nome: '', url_logo: ''},
@@ -62,6 +68,7 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				regions.push(factions[region]);
 			}
 		});
+		regions.sort();
 		return regions;
 	}
 
@@ -75,6 +82,7 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				});
 			}
 		});
+		campeoes.sort();
 		return campeoes;
 	}
 	
@@ -92,8 +100,40 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				return undefined;
 			}
 
-			return {code: code, regions: pegaRegioes(cards), champions: pegaCampeoes(cards)};
+			return {code: code, cards: cards, regions: pegaRegioes(cards), champions: pegaCampeoes(cards)};
 		});
+	}
+
+	function decksValidos(decks){
+		return decks.filter((deck) => deck === undefined).length === 0;
+	}
+
+	function checkCardlock(decks){
+		const allCardCodes = decks.flatMap((deck) => deck.cards.map((card) => card.code));
+		const cards = [...new Set(allCardCodes)];
+
+		return allCardCodes.length === cards.length;
+	}
+	
+	function checkRegionlock(decks){
+		const allRegions = decks.flatMap((deck) => deck.regions);
+		const regions = [...new Set(allRegions)];
+	
+		return allRegions.length === regions.length;
+	}
+	
+	function checkRiotlock(decks){
+		const allChampions = decks.flatMap((deck) => deck.champions);
+		const champions = [...new Set(allChampions)];
+
+		const allRegions = decks.map((deck) => deck.regions.join(''));
+		const regions = [...new Set(allRegions)];
+
+		return (allChampions.length === champions) && (allRegions.length === regions);
+	}
+
+	function segueRegra(decks){
+		return regra ? regraFuncao[regra](decks) : true;
 	}
 
 	function saveOrUpdateJogador(jogador){
@@ -104,40 +144,45 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 			}
 
 			const novosDecks = decodeDecks(jogador.decks);
-			const valido = novosDecks.filter((deck) => deck === undefined).length === 0;
 
-			if (valido){
-				novosDecks.forEach((deck, index) => {
-					const novo = [...jogador.decks];
-					novo[index].code = deck.code;
-					novo[index].regions = deck.regions;
-					novo[index].champions = deck.champions;
-					setJogador({...jogador, decks: novo});
-				});
-				
-				if (mostrar){
-					const novoJogadores = jogadores.map((j) => {
-						if (j.nome === jogadorAntigo.nome){
-							return jogador;
-						}else{
-							return j;
-						}
-					});
-					setSaveState({...saveState, jogadores: novoJogadores});
-				}else{
-					setSaveState({...saveState, jogadores: [...jogadores, jogador]});
-				}
-
-				setJogador({nome: '',
-					time: {nome: '', url_logo: ''},
-					decks: [{code: '', regions: [], champions: []},
-							{code: '', regions: [], champions: []},
-							{code: '', regions: [], champions: []}]});
-				setMensagemErro('');
-				if (mostrar)	setMostrar(false);
-			}else{
+			if (!decksValidos(novosDecks)){
 				setMensagemErro('Algum código de deck passado é inválido.');
+				return;
 			}
+
+			if (!segueRegra(novosDecks)){
+				setMensagemErro('Os decks passados não seguem as regras estabelecidas.');
+				return;
+			}
+
+			novosDecks.forEach((deck, index) => {
+				const novo = [...jogador.decks];
+				novo[index].code = deck.code;
+				novo[index].regions = deck.regions;
+				novo[index].champions = deck.champions;
+				setJogador({...jogador, decks: novo});
+			});
+			
+			if (mostrar){
+				const novoJogadores = jogadores.map((j) => {
+					if (j.nome === jogadorAntigo.nome){
+						return jogador;
+					}else{
+						return j;
+					}
+				});
+				setSaveState({...saveState, jogadores: novoJogadores});
+			}else{
+				setSaveState({...saveState, jogadores: [...jogadores, jogador]});
+			}
+
+			setJogador({nome: '',
+				time: {nome: '', url_logo: ''},
+				decks: [{code: '', regions: [], champions: []},
+						{code: '', regions: [], champions: []},
+						{code: '', regions: [], champions: []}]});
+			setMensagemErro('');
+			if (mostrar)	setMostrar(false);
 		}else{
 			setMensagemErro("Nome ou time inválido.");
 		}
@@ -150,7 +195,7 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				<label htmlFor="time_jogador">Time:</label>
 				<select name="time_jogador" value={jogador.time.nome}
 						onChange={(e) => mudaTime(e.target.value)}>
-					<option value="">Sem Time</option>
+					<option value="">-</option>
 					{times.map(renderTime)}
 				</select>
 			</Campo>

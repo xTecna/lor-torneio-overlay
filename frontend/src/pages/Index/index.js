@@ -26,6 +26,7 @@ const Index = () => {
 			nomeTorneio: saveState.nomeTorneio,
 			faseTorneio: saveState.faseTorneio,
 			tempoLimiteTorneio: saveState.tempoLimiteTorneio,
+			regra: saveState.regra,
 			jogador1: saveState.jogador1,
 			jogador2: saveState.jogador2,
 			atuais1: saveState.atuais[0],
@@ -80,6 +81,7 @@ const Index = () => {
 			nomeTorneio: dados.nomeTorneio || 'Torneio',
 			faseTorneio: dados.faseTorneio || 'Oitavas-de-final',
 			tempoLimiteTorneio: dados.tempoLimiteTorneio || 120,
+			regra: dados.regra || '',
 			jogador1: dados.jogador1 || {
 				nome: 'WNX Mafraju',
 				time: {nome: '', url_logo: ''},

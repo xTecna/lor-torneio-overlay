@@ -7,10 +7,12 @@ import SectionTitle from '../SectionTitle';
 
 const SectionDadosTorneio = () => {
 
+	const regras = ['Cardlock', 'Regionlock', 'Riotlock'];
+
 	const [ mostrar, setMostrar ] = useState(true);
 
 	const { saveState, setSaveState } = useSaveState();
-	const { nomeTorneio, faseTorneio, tempoLimiteTorneio } = saveState;
+	const { nomeTorneio, faseTorneio, tempoLimiteTorneio, regra } = saveState;
 
 	return (
 		<Section>
@@ -34,6 +36,13 @@ const SectionDadosTorneio = () => {
 						<input type="text" id="tempo_limite_torneio"
 							   value={tempoLimiteTorneio}
 							   onChange={e => setSaveState({...saveState, tempoLimiteTorneio: e.target.value})}></input>
+					</div>
+					<div>
+						<label htmlFor="regra_torneio">Regra:</label>
+						<select id="regra_torneio" value={regra} onChange={e => setSaveState({...saveState, regra: e.target.value})}>
+							<option value='' key={0}>-</option>
+							{regras.map((regra, index) => <option value={regra} key={index + 1}>{regra}</option>)}
+						</select>
 					</div>
 				</SectionContent>
 			}
