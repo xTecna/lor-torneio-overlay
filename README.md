@@ -8,6 +8,8 @@
   </a>
 </p> -->
 
+<h1 align="center">Agora on-line em: <a href="https://lor-torneio-overlay.xtecna.vercel.app/">https://lor-torneio-overlay.xtecna.vercel.app/</a></h1>
+
 <p>
   Esse projeto consiste em fazer um overlay para torneios de LOR, ele esta sendo desenvolvido ao vivo no canal <a href="https://www.twitch.tv/xtecna">https://www.twitch.tv/xtecna</a> acesse e deixe seu follow para acompanhar o projeto.
 
