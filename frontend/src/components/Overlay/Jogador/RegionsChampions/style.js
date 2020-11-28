@@ -11,7 +11,7 @@ export const RegionsChampions = styled.div`
 `;
 
 export const Regions = styled.div`
-	width: ${props => props.theme.webcamSize*0.5}vh;
+	width: ${props => props.theme.webcamSize * ((props.inline && props.nochampions) ? (props.time ? 1.5 : 2) : 0.5)}vh;
 	height: ${props => props.theme.webcamSize * (props.inline ? 0.25 : (props.time ? 0.25 : 0.5))}vh;
 	display: flex;
 	flex-direction: row;

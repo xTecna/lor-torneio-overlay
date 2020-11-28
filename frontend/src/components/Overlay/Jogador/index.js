@@ -66,7 +66,7 @@ const Jogador = ({jogador, atuais, bans, vitorias}) => {
 			<Decks className="decks">
 				{
 					jogador.decks.map((deck, index) => {
-						return <Deck key={index} status={statusCheck(index, bans, vitorias)} champions={deck.champions}/>
+						return <Deck key={index} status={statusCheck(index, bans, vitorias)} deck={deck}/>
 					})
 				}
 			</Decks>

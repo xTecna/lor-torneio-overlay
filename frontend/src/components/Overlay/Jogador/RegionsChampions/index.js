@@ -15,12 +15,13 @@ const RegionsChampions = ({inline, time, regions, champions}) => {
 
 	return (
 		<RegionsChampionsDiv className="regions-champions" inline={inline} time={time}>
-			<Regions className="regions" inline={inline} time={time}>
+			<Regions className="regions" inline={inline} time={time} nochampions={champions.length === 0}>
 				{regions.map(renderRegion)}
 			</Regions>
+			{champions.length !== 0 &&
 			<Champions className="champions" inline={inline} time={time}>
 				{champions.map((item, index) => renderChampion(item, index, number_champions))}
-			</Champions>
+			</Champions>}
 		</RegionsChampionsDiv>
 	);
 };

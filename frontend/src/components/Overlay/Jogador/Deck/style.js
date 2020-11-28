@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
-export const Deck = styled.div`
-	display: flex;
-	flex-direction: column;
+export const Decks = styled.div`
 	width: ${props => props.theme.webcamSize*(2/3)}vh;
 	height: ${props => props.theme.webcamSize*0.4}vh;
+
+	display: flex;
+	flex-direction: column;
 `;
 
-export const Champions = styled.div`
+export const Deck = styled.div`
 	height: ${props => props.theme.webcamSize*0.4}vh;
 	
 	align-items: center;
@@ -37,6 +38,16 @@ export const Champions = styled.div`
 
 	&.victory img {
 		filter: brightness(50%);
+	}
+`;
+
+export const Region = styled.div`
+	width: ${props => props.theme.webcamSize*0.2}vh;
+	height: ${props => props.theme.webcamSize*0.2}vh;
+
+	img{
+		width: 100%;
+		height: 100%;
 	}
 `;
 
