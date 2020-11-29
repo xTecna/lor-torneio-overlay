@@ -3,7 +3,7 @@ import {DeckEncoder} from 'runeterra';
 
 import {useSaveState} from '../../../../context/SaveState';
 
-import {Barra, Campo, Botoes, Botao} from './style';
+import {Barra, Campo, Botoes, Botao, MensagemErroDetalhes, Detalhes} from './style';
 import {MensagemErro} from '../../style';
 
 import factions from '../../../../assets/factions.json';
@@ -30,6 +30,7 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 				{code: '', regions: [], champions: []},
 				{code: '', regions: [], champions: []}]});
 	const [ mensagemErro, setMensagemErro ] = useState();
+	const [ detalhe, setDetalhe ] = useState();
 
 	useEffect(() => {
 		function carregaJogador(){
@@ -136,10 +137,19 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 		return regra ? regraFuncao[regra](decks) : true;
 	}
 
+	function geraLinkDetalhes(){
+		let url = `https://xtecna.github.io/lor-deck-checker/index.html?` +
+				  `regra=${regra.toLowerCase()}&` +
+				  `singleton=false`;
+		jogador.decks.forEach((deck, index) => url += `&deck${index + 1}=${deck.code}`);
+		return url;
+	}
+
 	function saveOrUpdateJogador(jogador){
 		if (jogador.nome && (jogador.time.nome === '' || buscaTime(jogador.time.nome))){
 			if (buscaJogador(jogador.nome)){
 				setMensagemErro('Já existe um jogador com esse nome.');
+				setDetalhe(false);
 				return;
 			}
 
@@ -147,11 +157,13 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 
 			if (!decksValidos(novosDecks)){
 				setMensagemErro('Algum código de deck passado é inválido.');
+				setDetalhe(false);
 				return;
 			}
 
 			if (!segueRegra(novosDecks)){
-				setMensagemErro('Os decks passados não seguem as regras estabelecidas.');
+				setMensagemErro('Os decks passados não seguem as regras estabelecidas. ');
+				setDetalhe(true);
 				return;
 			}
 
@@ -182,9 +194,11 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 						{code: '', regions: [], champions: []},
 						{code: '', regions: [], champions: []}]});
 			setMensagemErro('');
+			setDetalhe(false);
 			if (mostrar)	setMostrar(false);
 		}else{
 			setMensagemErro("Nome ou time inválido.");
+			setDetalhe(false);
 		}
 	}
 	
@@ -211,7 +225,10 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 						   onChange={(e) => mudaCodigoDeck(e.target.value, index)}></Barra>
 				</Campo>
 			})}
-			<MensagemErro>{mensagemErro}</MensagemErro>
+			<MensagemErroDetalhes>
+				<MensagemErro>{mensagemErro}</MensagemErro>
+				{detalhe && <Detalhes href={geraLinkDetalhes()} target="_blank" rel="noopener noreferrer">Mais Detalhes</Detalhes>}
+			</MensagemErroDetalhes>
 			<Botoes>
 				<Botao onClick={() => saveOrUpdateJogador(jogador)}>{mensagemClica}</Botao>
 				{mostrar && <Botao onClick={() => setMostrar(false)}>Cancelar edição</Botao>}
