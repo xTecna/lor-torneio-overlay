@@ -36,7 +36,7 @@ const SectionServidor = ({idServidor, setIdServidor, setDados}) => {
 		try{
 			const response = await axios({
 				method: 'get',
-				url: `http://localhost:3030/${novoIdServidor}`
+				url: `https://lor-torneio-overlay.herokuapp.com/${novoIdServidor}`
 			});
 			console.log(response);
 
