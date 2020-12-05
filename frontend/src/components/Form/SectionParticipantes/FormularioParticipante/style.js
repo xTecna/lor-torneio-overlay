@@ -25,12 +25,3 @@ export const Botao = styled.button`
 	font-weight: bold;
 	border-radius: 1vh;
 `;
-
-export const MensagemErroDetalhes = styled.div`
-	display: flex;
-`;
-
-export const Detalhes = styled.a`
-	margin-left: 1vw;
-	color: #ff0000;
-`;

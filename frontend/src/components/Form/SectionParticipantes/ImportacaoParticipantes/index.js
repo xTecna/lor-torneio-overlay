@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {DeckEncoder} from 'runeterra';
 import CSVReader from 'react-csv-reader';
 import {GrDocumentCsv} from 'react-icons/gr';
@@ -6,17 +6,16 @@ import {GrDocumentCsv} from 'react-icons/gr';
 import {useSaveState} from '../../../../context/SaveState';
 
 import {Importar} from './style';
+import {MensagemErroDetalhes, Detalhes} from '../style';
 import {MensagemErro} from '../../style';
 
 import factions from '../../../../assets/factions.json';
 import champions from '../../../../assets/champions.json';
 
-const ImportacaoParticipantes = ({regraFuncao}) => {
+const ImportacaoParticipantes = ({regraFuncao, funcaoErro}) => {
 
 	const { saveState, setSaveState } = useSaveState();
 	const { regra, times } = saveState;
-
-	const [ mensagemErro, setMensagemErro ] = useState();
 
 	function validaNome(nome){
 		return nome;
@@ -51,7 +50,7 @@ const ImportacaoParticipantes = ({regraFuncao}) => {
 	}
 
 	function validaJogador(jogador){
-		const {nome, time, deck1, deck2, deck3} = jogador;
+		const [nome, time, deck1, deck2, deck3] = jogador;
 		return validaNome(nome) && validaTime(time) && validaDeck(deck1) && validaDeck(deck2) &&
 			   validaDeck(deck3) && validaDecks([deck1, deck2, deck3]);
 	}
@@ -92,14 +91,15 @@ const ImportacaoParticipantes = ({regraFuncao}) => {
 	}
 
 	function converteJogador(jogador){
+		const [nome, time, deck1, deck2, deck3] = jogador;
 		const decks = [
-			converteDeck(jogador.deck1),
-			converteDeck(jogador.deck2),
-			converteDeck(jogador.deck3)
+			converteDeck(deck1),
+			converteDeck(deck2),
+			converteDeck(deck3)
 		];
 		return {
-			nome: jogador.nome,
-			time: jogador.time ? buscaTime(jogador.time) : {nome: '', url_logo: ''},
+			nome: nome,
+			time: time ? buscaTime(time) : {nome: '', url_logo: ''},
 			decks: decks.map((deck) => { return {
 				code: deck.code,
 				regions: deck.regions,
@@ -108,32 +108,53 @@ const ImportacaoParticipantes = ({regraFuncao}) => {
 		};
 	}
 
+	function geraLinkDetalhes(deck1, deck2, deck3){
+		return `https://xtecna.github.io/lor-deck-checker/index.html?` +
+				`regra=${regra.toLowerCase()}&singleton=false` +
+				`&deck1=${deck1}&deck2=${deck2}&deck3=${deck3}`;
+	}
+
 	function importarJogadores(data){
-		let jogadoresValidos = data.map((jogador) => { return {
-			nome: jogador['Nome'],
-			time: jogador['Time'],
-			deck1: jogador['Deck 1'],
-			deck2: jogador['Deck 2'],
-			deck3: jogador['Deck 3']
-		}});
-		const numeroJogadores = jogadoresValidos.length;
-		jogadoresValidos = jogadoresValidos.filter((jogador) => validaJogador(jogador));
+		const erros = [];
+		let jogadoresValidos = data.filter((line, index) => {
+			if (validaJogador(line))	return true;
+
+			const [nome, time, deck1, deck2, deck3] = line;
+
+			let detalhes = false;
+
+			let erro = `Jogador ${index + 1} `;
+			if (!validaNome(nome)){
+				erro += 'tem nome inválido.';
+			}else if (!validaTime(time)){
+				erro += 'está num time que não existe.';
+			}else if (!validaDeck(deck1)){
+				erro += 'tem deck 1 inválido.';
+			}else if (!validaDeck(deck2)){
+				erro += 'tem deck 2 inválido.';
+			}else if (!validaDeck(deck3)){
+				erro += 'tem deck 3 inválido.';
+			}else if (!validaDeck([deck1, deck2, deck3])){
+				erro += 'tem decks que não seguem a regra estabelecida.';
+				detalhes = true;
+			}else{
+				erro += 'não possui todas as informações em sua linha (faltando nome, time ou um dos decks).';
+			}
+
+			erros.push(<MensagemErroDetalhes><MensagemErro>{erro}</MensagemErro>{detalhes && <Detalhes href={geraLinkDetalhes(deck1, deck2, deck3)} target="_blank" rel="noopener noreferrer">Mais Detalhes</Detalhes>}</MensagemErroDetalhes>)
+			return false;
+		});
 		jogadoresValidos = jogadoresValidos.map((jogador) => converteJogador(jogador));
-		const numeroValidos = jogadoresValidos.length;
 		setSaveState({...saveState, jogadores: jogadoresValidos});
-		if (numeroValidos < numeroJogadores){
-			setMensagemErro(`Ocorreu um erro em ${numeroJogadores - numeroValidos} registros.`);
-		}else{
-			setMensagemErro('');
-		}
+		funcaoErro(erros);
+		document.querySelector('.csv-input').value = '';
 	}
 
 	return (
 		<Importar>
 			<label htmlFor="import"><GrDocumentCsv/>Importar jogadores:</label>
-			<CSVReader id="import" parserOptions={{ header: true }}
+			<CSVReader id="import" parserOptions={{ header: false }}
 					onFileLoaded={(data) => importarJogadores(data)}/>
-			<MensagemErro>{mensagemErro}</MensagemErro>
 		</Importar>
 	);
 }

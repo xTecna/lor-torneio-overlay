@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {useSaveState} from '../../../context/SaveState';
 
 import SectionTitle from '../SectionTitle';
 import {PesquisarImportar} from './style';
-import {Section, SectionContent} from '../style';
+import {Section, SectionContent, MensagemErro} from '../style';
 import BarraPesquisar from '../BarraPesquisar';
 import ImportacaoParticipante from './ImportacaoParticipantes';
 import TabelaParticipantes from './TabelaParticipantes';
@@ -54,6 +54,8 @@ const SectionParticipantes = () => {
 				{code: '', regions: [], champions: []},
 				{code: '', regions: [], champions: []}]});
 
+	const [ errosImportacao, setErrosImportacao ] = useState([]);
+
 	function buscaJogador(nome){
 		return jogadores.find((jogador) => jogador.nome === nome);
 	}
@@ -67,6 +69,10 @@ const SectionParticipantes = () => {
 		}
 	}
 
+	useEffect(() => {
+		
+	}, [errosImportacao]);
+
 	return (
 		<Section>
 			<SectionTitle mostrar={mostrar} toggleMostrar={setMostrar}>
@@ -76,8 +82,9 @@ const SectionParticipantes = () => {
 				<SectionContent>
 					<PesquisarImportar>
 						<BarraPesquisar name={'jogador'} query={jogadorQuery} funcaoMuda={setJogadorQuery}/>
-						<ImportacaoParticipante regraFuncao={regraFuncao}/>
+						<ImportacaoParticipante regraFuncao={regraFuncao} funcaoErro={setErrosImportacao}/>
 					</PesquisarImportar>
+					{errosImportacao.map((erro, index) => <MensagemErro key={index}>{erro}</MensagemErro>)}
 					<TabelaParticipantes jogadorQuery={jogadorQuery} apresentaFormulario={apresentaFormulario}/>
 					{mostrarEditar &&
 						<FormularioParticipante titulo={`Editar Participante ${jogadorAntigo.nome}`}

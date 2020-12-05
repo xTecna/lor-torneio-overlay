@@ -3,7 +3,8 @@ import {DeckEncoder} from 'runeterra';
 
 import {useSaveState} from '../../../../context/SaveState';
 
-import {Barra, Campo, Botoes, Botao, MensagemErroDetalhes, Detalhes} from './style';
+import {Barra, Campo, Botoes, Botao} from './style';
+import {MensagemErroDetalhes, Detalhes} from '../style';
 import {MensagemErro} from '../../style';
 
 import factions from '../../../../assets/factions.json';
