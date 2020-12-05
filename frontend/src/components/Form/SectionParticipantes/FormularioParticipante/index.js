@@ -134,7 +134,7 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 	}
 
 	function segueRegra(decks){
-		return regra ? regraFuncao[regra](decks) : true;
+		return !regra && regraFuncao[regra](decks);
 	}
 
 	function geraLinkDetalhes(){
