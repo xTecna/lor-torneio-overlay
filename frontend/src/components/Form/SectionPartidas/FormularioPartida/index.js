@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Autocomplete from 'react-autocomplete';
 
 import {useSaveState} from '../../../../context/SaveState';
 
@@ -32,10 +33,6 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 
 		if (index === 0)	setPartida({...partida, jogador1: nome});
 		else				setPartida({...partida, jogador2: nome});
-	}
-
-	function renderJogador(jogador, index){
-		return <option key={index} value={jogador.nome}>{jogador.nome}</option>;
 	}
 
 	function atualizaPartidaAtual(novoJogador1, novoJogador2, jogador1, jogador2, index){
@@ -84,19 +81,27 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 			</Campo>
 			<Campo>
 				<label htmlFor="jogador1">Jogador 1:</label>
-				<select name="jogador1" value={partida.jogador1}
-						onChange={(e) => mudaJogador(0, e.target.value)}>
-					<option value="">-</option>
-					{jogadores.map(renderJogador)}
-				</select>
+				<Autocomplete id="jogador1" items={jogadores}
+					shouldItemRender={(item, value) => item.nome.toLowerCase().includes(value.toLowerCase())}
+					getItemValue={(jogador) => jogador.nome}
+					renderItem={(jogador, isHighlighted) =>
+						<div style={{background: isHighlighted ? 'lightgray' : 'white'}}>{jogador.nome}</div>
+					}
+					value={partida.jogador1}
+					onChange={(e) => setPartida({...partida, jogador1: e.target.value})}
+					onSelect={(value) => setPartida({...partida, jogador1: value})}/>
 			</Campo>
 			<Campo>
-				<label htmlFor="jogador2">Jogador 2:</label>
-				<select name="jogador2" value={partida.jogador2}
-						onChange={(e) => mudaJogador(1, e.target.value)}>
-					<option value="">-</option>
-					{jogadores.map(renderJogador)}
-				</select>
+			<label htmlFor="jogador2">Jogador 2:</label>
+			<Autocomplete id="jogador2" items={jogadores}
+				shouldItemRender={(item, value) => item.nome.toLowerCase().includes(value.toLowerCase())}
+				getItemValue={(jogador) => jogador.nome}
+				renderItem={(jogador, isHighlighted) =>
+					<div style={{background: isHighlighted ? 'lightgray' : 'white'}}>{jogador.nome}</div>
+				}
+				value={partida.jogador2}
+				onChange={(e) => setPartida({...partida, jogador2: e.target.value})}
+				onSelect={(value) => setPartida({...partida, jogador2: value})}/>
 			</Campo>
 			<MensagemErro>{mensagemErro}</MensagemErro>
 			<Botoes>
