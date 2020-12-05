@@ -69,7 +69,7 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 			<Campo>
 				<label htmlFor="round_partida">Round:</label>
 				<input type="number" id="round_partida" min="1" step="1" max={rounds} value={partida.round}
-							   onChange={e => setPartida({...partida, round: e.target.value})}/>
+							   onChange={e => setPartida({...partida, round: +(e.target.value)})}/>
 			</Campo>
 			<Campo>
 				<label htmlFor="jogador1">Jogador 1:</label>
