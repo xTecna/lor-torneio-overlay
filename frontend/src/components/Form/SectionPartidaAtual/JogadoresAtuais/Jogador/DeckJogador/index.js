@@ -36,9 +36,7 @@ const DeckJogador = ({deck, index, jogadorIndex}) => {
 	function toggleAtual(jogador, deck){
 		if (!atuais[jogador][deck]){
 			let novo = [...atuais];
-			for(let i = 0; i < 3; ++i){
-				novo[jogador][i] = false;
-			}
+			novo[jogador] = novo[jogador].map(() => false);
 			novo[jogador][deck] = true;
 			setSaveState({...saveState, atuais: novo});
 		}

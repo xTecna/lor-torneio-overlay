@@ -15,7 +15,7 @@ function renderTime(time, index){
 	);
 }
 
-const TabelaPartidas = ({partidaQuery, apresentaFormulario}) => {
+const TabelaPartidas = ({partidaQuery, roundQuery, apresentaFormulario}) => {
 
 	const { saveState, setSaveState } = useSaveState();
 	const { partidas } = saveState;
@@ -85,10 +85,10 @@ const TabelaPartidas = ({partidaQuery, apresentaFormulario}) => {
 		}
 	];
 
-	const partidasVisiveis = useMemo(() => partidas.filter((partida) =>
-																partida.jogador1.nome.toLowerCase().includes(partidaQuery.toLowerCase()) ||
-																partida.jogador2.nome.toLowerCase().includes(partidaQuery.toLowerCase())),
-										[partidas, partidaQuery]);
+	const partidasVisiveis = useMemo(() => partidas.filter((partida) => (!roundQuery || partida.round === roundQuery) &&
+																(partida.jogador1.nome.toLowerCase().includes(partidaQuery.toLowerCase()) ||
+																partida.jogador2.nome.toLowerCase().includes(partidaQuery.toLowerCase()))),
+										[partidas, roundQuery, partidaQuery]);
 
 	return (
 		<DataTable

@@ -22,9 +22,7 @@ function statusCheck(deck, bans, vitorias){
 }
 
 function deckAtual(atuais){
-	for (let i = 0; i < 3; ++i){
-		if (atuais[i])	return i;
-	}
+	return atuais.findIndex((atual) => atual);
 }
 
 const Jogador = ({jogador, atuais, bans, vitorias}) => {

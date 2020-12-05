@@ -52,7 +52,7 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 		const jogador1 = buscaJogador(partida.jogador1);
 		const jogador2 = buscaJogador(partida.jogador2);
 
-		if (partida.round > 0 && partida.jogador1 && partida.jogador2 &&
+		if (partida.round > 0 && partida.round <= rounds && partida.jogador1 && partida.jogador2 &&
 			partida.jogador1 !== partida.jogador2 && jogador1 && jogador2){
 			const partida_object = {round: partida.round, jogador1: jogador1, jogador2: jogador2};
 			if (mostrar){

@@ -12,12 +12,21 @@ import FormularioPartida from './FormularioPartida';
 const SectionPartidas = () => {
 
 	const { saveState } = useSaveState();
-	const { partidas } = saveState;
+	const { rounds, partidas } = saveState;
 
 	const [ mostrar, setMostrar ] = useState(true);
 	const [ partidaQuery, setPartidaQuery ] = useState('');
+	const [ roundQuery, setRoundQuery ] = useState('');
 	const [ mostrarEditar, setMostrarEditar ] = useState(false);
 	const [ partidaAntiga, setPartidaAntiga ] = useState({round: 1, jogador1: '', jogador2: ''});
+
+	function criaRounds(){
+		let roundsQueries = [];
+		for(let i = 0; i < rounds; ++i){
+			roundsQueries.push(i + 1);
+		}
+		return roundsQueries;
+	}
 
 	function apresentaFormulario(index){
 		const partida = partidas[index];
@@ -37,8 +46,15 @@ const SectionPartidas = () => {
 				<SectionContent>
 					<Pesquisas>
 						<BarraPesquisar name={'partida'} query={partidaQuery} funcaoMuda={setPartidaQuery}/>
+						<label htmlFor="round_query">Round:</label>
+						<select name="round_query" value={roundQuery}
+								onChange={(e) => setRoundQuery(e.target.value)}>
+							<option value="">-</option>
+							{criaRounds().map((round, index) => <option key={index} value={round}>Round {round}</option>)}
+						</select>
 					</Pesquisas>
-					<TabelaPartidas partidaQuery={partidaQuery} apresentaFormulario={apresentaFormulario}/>
+					<TabelaPartidas partidaQuery={partidaQuery} roundQuery={parseInt(roundQuery)}
+									apresentaFormulario={apresentaFormulario}/>
 					{mostrarEditar &&
 						<FormularioPartida titulo={`Editar Partida`}
 							mensagemClica='Editar partida' mostrar={mostrarEditar} setMostrar={setMostrarEditar}
