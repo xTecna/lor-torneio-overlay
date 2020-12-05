@@ -5,8 +5,3 @@ export const PesquisarImportar = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 `;
-
-export const Importar = styled.div`
-	display: flex;
-	align-content: center;
-`;

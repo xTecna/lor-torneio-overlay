@@ -13,13 +13,7 @@ function renderTime(time, index){
 	return <option key={index} value={time.nome}>{time.nome}</option>;
 }
 
-const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jogadorAntigo}) => {
-
-	const regraFuncao = {
-		'Cardlock': checkCardlock,
-		'Regionlock': checkRegionlock,
-		'Riotlock': checkRiotlock
-	};
+const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, setMostrar, jogadorAntigo}) => {
 
 	const { saveState, setSaveState } = useSaveState();
 	const { regra, jogadores, times } = saveState;
@@ -109,32 +103,8 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 		return decks.filter((deck) => deck === undefined).length === 0;
 	}
 
-	function checkCardlock(decks){
-		const allCardCodes = decks.flatMap((deck) => deck.cards.map((card) => card.code));
-		const cards = [...new Set(allCardCodes)];
-
-		return allCardCodes.length === cards.length;
-	}
-	
-	function checkRegionlock(decks){
-		const allRegions = decks.flatMap((deck) => deck.regions);
-		const regions = [...new Set(allRegions)];
-	
-		return allRegions.length === regions.length;
-	}
-	
-	function checkRiotlock(decks){
-		const allChampions = decks.flatMap((deck) => deck.champions);
-		const champions = [...new Set(allChampions)];
-
-		const allRegions = decks.map((deck) => deck.regions.join(''));
-		const regions = [...new Set(allRegions)];
-
-		return (allChampions.length === champions) && (allRegions.length === regions);
-	}
-
 	function segueRegra(decks){
-		return !regra && regraFuncao[regra](decks);
+		return !regra || regraFuncao[regra](decks);
 	}
 
 	function geraLinkDetalhes(){
@@ -151,7 +121,7 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 
 	function saveOrUpdateJogador(jogador){
 		if (jogador.nome && (jogador.time.nome === '' || buscaTime(jogador.time.nome))){
-			if (buscaJogador(jogador.nome)){
+			if (!mostrar && buscaJogador(jogador.nome)){
 				setMensagemErro('Já existe um jogador com esse nome.');
 				setDetalhe(false);
 				return;
