@@ -27,14 +27,6 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 		return jogadores.find((jogador) => jogador.nome === nome);
 	}
 
-	function mudaJogador(index, nome){
-		const jogador = buscaJogador(nome);
-		if (!jogador)	nome = '';
-
-		if (index === 0)	setPartida({...partida, jogador1: nome});
-		else				setPartida({...partida, jogador2: nome});
-	}
-
 	function atualizaPartidaAtual(novoJogador1, novoJogador2, jogador1, jogador2, index){
 		if (index === 0)	return (jogador1.nome === partidaAntiga.jogador1 && jogador2.nome === partidaAntiga.jogador2) ? novoJogador1 : jogador1;
 		else				return (jogador1.nome === partidaAntiga.jogador1 && jogador2.nome === partidaAntiga.jogador2) ? novoJogador2 : jogador2;
