@@ -8,7 +8,7 @@ import {MensagemErro} from '../../style';
 const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}) => {
 
 	const { saveState, setSaveState } = useSaveState();
-	const { jogadores, times } = saveState;
+	const { times } = saveState;
 
 	const [ time, setTime ] = useState({nome: '', url_logo: ''});
 	const [ mensagemErro, setMensagemErro ] = useState();
@@ -26,24 +26,25 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 		carregaTime();
 	}, [mostrar, timeAntigo]);
 
+	function atualizaTimeJogador(time, jogador){
+		return (jogador.time.nome === timeAntigo.nome) ? {...jogador, time: time} : jogador;
+	}
+
 	function saveOrUpdateTime(time){
 		if (time.nome){
 			if (mostrar){
-				const novoJogadores = jogadores.map((jogador) => {
-					if (jogador.time.nome === timeAntigo.nome){
-						return {...jogador, time: time};
-					}else{
-						return jogador;
-					}
+				setSaveState({...saveState,
+					jogador1: atualizaTimeJogador(time, saveState.jogador1),
+					jogador2: atualizaTimeJogador(time, saveState.jogador2),
+					partidas: saveState.partidas.map((partida) => {
+						return {...partida,
+							jogador1: atualizaTimeJogador(time, partida.jogador1),
+							jogador2: atualizaTimeJogador(time, partida.jogador2)
+						};
+					}),
+					jogadores: saveState.jogadores.map((jogador) => atualizaTimeJogador(time, jogador)),
+					times: saveState.times.map((t) => (t.nome === timeAntigo.nome) ? time : t)
 				});
-				const novo = times.map((t) => {
-					if (t.nome === timeAntigo.nome){
-						return time;
-					}else{
-						return t;
-					}
-				});
-				setSaveState({...saveState, jogadores: novoJogadores, times: novo});
 			}else{
 				if (buscaTime(time.nome)){
 					setMensagemErro('Já existe um time com esse nome.');

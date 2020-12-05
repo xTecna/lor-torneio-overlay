@@ -12,7 +12,7 @@ const SectionDadosTorneio = () => {
 	const [ mostrar, setMostrar ] = useState(true);
 
 	const { saveState, setSaveState } = useSaveState();
-	const { nomeTorneio, faseTorneio, tempoLimiteTorneio, regra } = saveState;
+	const { nomeTorneio, faseTorneio, tempoLimiteTorneio, regra, rounds } = saveState;
 
 	return (
 		<Section>
@@ -33,7 +33,7 @@ const SectionDadosTorneio = () => {
 					</div>
 					<div>
 						<label htmlFor="tempo_limite_torneio">Tempo limite de cada partida: (em minutos)</label>
-						<input type="text" id="tempo_limite_torneio"
+						<input type="number" id="tempo_limite_torneio" min="20" max="240" step="20"
 							   value={tempoLimiteTorneio}
 							   onChange={e => setSaveState({...saveState, tempoLimiteTorneio: e.target.value})}></input>
 					</div>
@@ -43,6 +43,11 @@ const SectionDadosTorneio = () => {
 							<option value='' key={0}>-</option>
 							{regras.map((regra, index) => <option value={regra} key={index + 1}>{regra}</option>)}
 						</select>
+					</div>
+					<div>
+						<label htmlFor="rounds_torneio">Rounds:</label>
+						<input type="number" id="rounds_torneio" min="1" step="1" value={rounds}
+							   onChange={e => setSaveState({...saveState, rounds: e.target.value})}/>
 					</div>
 				</SectionContent>
 			}

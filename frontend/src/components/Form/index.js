@@ -6,6 +6,7 @@ import SectionServidor from './SectionServidor';
 import SectionPreferencias from './SectionPreferencias';
 import SectionDadosTorneio from './SectionDadosTorneio';
 import SectionPartidaAtual from './SectionPartidaAtual';
+import SectionPartidas from './SectionPartidas';
 import SectionParticipantes from './SectionParticipantes';
 import SectionTimes from './SectionTimes';
 
@@ -18,6 +19,7 @@ const Form = ({idServidor, setIdServidor, setDados}) => {
 			<SectionPreferencias/>
 			<SectionDadosTorneio/>
 			<SectionPartidaAtual/>
+			<SectionPartidas/>
 			<SectionParticipantes/>
 			<SectionTimes/>
 		</FormDiv>

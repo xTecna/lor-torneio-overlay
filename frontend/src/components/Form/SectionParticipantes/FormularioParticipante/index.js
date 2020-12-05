@@ -145,6 +145,10 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 		return url;
 	}
 
+	function atualizaNovoJogador(novo_jogador, jogador){
+		return (jogador.nome === jogadorAntigo.nome) ? novo_jogador : jogador;
+	}
+
 	function saveOrUpdateJogador(jogador){
 		if (jogador.nome && (jogador.time.nome === '' || buscaTime(jogador.time.nome))){
 			if (buscaJogador(jogador.nome)){
@@ -176,14 +180,17 @@ const FormularioParticipante = ({titulo, mensagemClica, mostrar, setMostrar, jog
 			});
 			
 			if (mostrar){
-				const novoJogadores = jogadores.map((j) => {
-					if (j.nome === jogadorAntigo.nome){
-						return jogador;
-					}else{
-						return j;
-					}
+				setSaveState({...saveState,
+					jogador1: atualizaNovoJogador(jogador, saveState.jogador1),
+					jogador2: atualizaNovoJogador(jogador, saveState.jogador2),
+					partidas: saveState.partidas.map((partida) => {
+						return {...partida,
+							jogador1: atualizaNovoJogador(jogador, partida.jogador1),
+							jogador2: atualizaNovoJogador(jogador, partida.jogador2)
+						};
+					}),
+					jogadores: saveState.jogadores.map((j) => atualizaNovoJogador(jogador, j))
 				});
-				setSaveState({...saveState, jogadores: novoJogadores});
 			}else{
 				setSaveState({...saveState, jogadores: [...jogadores, jogador]});
 			}

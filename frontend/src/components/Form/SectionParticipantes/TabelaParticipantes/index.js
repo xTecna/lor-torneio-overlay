@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import DataTable from 'react-data-table-component';
-import { FaTrash, FaPencilAlt, FaArrowUp } from 'react-icons/fa';
+import { FaTrash, FaPencilAlt } from 'react-icons/fa';
 
 import {useSaveState} from '../../../../context/SaveState';
 
@@ -53,15 +53,6 @@ const TabelaParticipantes = ({jogadorQuery, apresentaFormulario}) => {
 		const novo = jogadores.filter((jogador) => jogador.nome !== nome);
 		setSaveState({...saveState, jogadores: novo});
 	}
-	
-	function mudaJogadorAtual(index, jogador){
-		if (index === 0)	setSaveState({...saveState, jogador1: jogador});
-		else				setSaveState({...saveState, jogador2: jogador});
-	}
-
-	function buscaJogador(nome){
-		return jogadores.find((jogador) => jogador.nome === nome);
-	}
 
 	const colunasParticipantes = [
 		{
@@ -109,20 +100,6 @@ const TabelaParticipantes = ({jogadorQuery, apresentaFormulario}) => {
 			selector: 'deck3',
 			sortable: false,
 			cell: row => renderDeck(row.decks[2]),
-			center: true
-		},
-		{
-			name: 'Jogador 1',
-			selector: 'jogador1',
-			sortable: false,
-			cell: row => <button className="botao-jogador" onClick={() => mudaJogadorAtual(0, buscaJogador(row.nome))}><FaArrowUp/> 1</button>,
-			center: true
-		},
-		{
-			name: 'Jogador 2',
-			selector: 'jogador2',
-			sortable: false,
-			cell: row => <button className="botao-jogador" onClick={() => mudaJogadorAtual(1, buscaJogador(row.nome))}><FaArrowUp/> 2</button>,
 			center: true
 		}
 	];

@@ -10,6 +10,7 @@ export default function SaveStateProvider({children}){
 		faseTorneio: 'Oitavas-de-final',
 		tempoLimiteTorneio: 120,
 		regra: '',
+		rounds: 1,
 		jogador1: {
 			nome: 'WNX Mafraju',
 			time: {nome: '', url_logo: ''},
@@ -39,6 +40,7 @@ export default function SaveStateProvider({children}){
 		bans: [[true, false, false], [false, false, true]],
 		vitorias: [[false, true, false], [false, false, false]],
 		atuais: [[false, false, true], [false, true, false]],
+		partidas: [],
 		jogadores: [],
 		times: []
 	});

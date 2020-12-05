@@ -27,6 +27,7 @@ const Index = () => {
 			faseTorneio: saveState.faseTorneio,
 			tempoLimiteTorneio: saveState.tempoLimiteTorneio,
 			regra: saveState.regra,
+			rounds: saveState.rounds,
 			jogador1: saveState.jogador1,
 			jogador2: saveState.jogador2,
 			atuais1: saveState.atuais[0],
@@ -35,6 +36,7 @@ const Index = () => {
 			atuais2: saveState.atuais[1],
 			bans2: saveState.bans[1],
 			vitorias2: saveState.vitorias[1],
+			partidas: saveState.partidas,
 			jogadores: saveState.jogadores,
 			times: saveState.times,
 			tempo: time.tempo
@@ -82,6 +84,7 @@ const Index = () => {
 			faseTorneio: dados.faseTorneio || 'Oitavas-de-final',
 			tempoLimiteTorneio: dados.tempoLimiteTorneio || 120,
 			regra: dados.regra || '',
+			rounds: dados.rounds || 1,
 			jogador1: dados.jogador1 || {
 				nome: 'WNX Mafraju',
 				time: {nome: '', url_logo: ''},
@@ -111,6 +114,7 @@ const Index = () => {
 			bans: [dados.bans1 || [true, false, false], dados.bans2 || [false, false, true]],
 			vitorias: [dados.vitorias1 || [false, true, false], dados.vitorias2 || [false, false, false]],
 			atuais: [dados.atuais1 || [false, false, true], dados.atuais2 || [false, true, true]],
+			partidas: dados.partidas || [],
 			jogadores: dados.jogadores || [],
 			times: dados.times || []
 		});

@@ -25,6 +25,7 @@ const Visual = (props) => {
 			faseTorneio: dados.faseTorneio || 'Oitavas-de-final',
 			tempoLimiteTorneio: dados.tempoLimiteTorneio || 120,
 			regra: dados.regra || '',
+			rounds: dados.rounds || 1,
 			jogador1: dados.jogador1 || {
 				nome: 'WNX Mafraju',
 				time: {nome: '', url_logo: ''},
@@ -54,6 +55,7 @@ const Visual = (props) => {
 			bans: [dados.bans1 || [true, false, false], dados.bans2 || [false, false, true]],
 			vitorias: [dados.vitorias1 || [false, true, false], dados.vitorias2 || [false, false, false]],
 			atuais: [dados.atuais1 || [false, false, true], dados.atuais2 || [false, true, true]],
+			partidas: dados.partidas || [],
 			jogadores: dados.jogadores || [],
 			times: dados.times || []
 		});
