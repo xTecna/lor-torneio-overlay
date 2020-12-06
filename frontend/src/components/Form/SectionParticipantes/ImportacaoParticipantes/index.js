@@ -6,8 +6,6 @@ import {GrDocumentCsv} from 'react-icons/gr';
 import {useSaveState} from '../../../../context/SaveState';
 
 import {Importar} from './style';
-import {MensagemErroDetalhes, Detalhes} from '../style';
-import {MensagemErro} from '../../style';
 
 import factions from '../../../../assets/factions.json';
 import champions from '../../../../assets/champions.json';
@@ -141,7 +139,9 @@ const ImportacaoParticipantes = ({regraFuncao, funcaoErro}) => {
 				erro += 'não possui todas as informações em sua linha (faltando nome, time ou um dos decks).';
 			}
 
-			erros.push(<MensagemErroDetalhes><MensagemErro>{erro}</MensagemErro>{detalhes && <Detalhes href={geraLinkDetalhes(deck1, deck2, deck3)} target="_blank" rel="noopener noreferrer">Mais Detalhes</Detalhes>}</MensagemErroDetalhes>)
+			if (detalhes)	erros.push({mensagem: erro, detalhes: geraLinkDetalhes(deck1, deck2, deck3)});
+			else			erros.push({mensagem: erro});
+			
 			return false;
 		});
 		jogadoresValidos = jogadoresValidos.map((jogador) => converteJogador(jogador));

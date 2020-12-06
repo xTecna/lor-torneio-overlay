@@ -3,8 +3,8 @@ import Autocomplete from 'react-autocomplete';
 
 import {useSaveState} from '../../../../context/SaveState';
 
+import JanelaErro from '../../JanelaErro';
 import {Campo, Botoes, Botao} from './style';
-import {MensagemErro} from '../../style';
 
 const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaAntiga}) => {
 
@@ -12,7 +12,7 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 	const { rounds, partidas, jogadores } = saveState;
 
 	const [ partida, setPartida ] = useState({round: 1, jogador1: '', jogador2: ''});
-	const [ mensagemErro, setMensagemErro ] = useState();
+	const [ erros, setErros ] = useState([]);
 
 	useEffect(() => {
 		function carregaPartida(){
@@ -38,6 +38,8 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 	}
 
 	function saveOrUpdatePartida(partida){
+		const novoErros = [];
+
 		const jogador1 = buscaJogador(partida.jogador1);
 		const jogador2 = buscaJogador(partida.jogador2);
 
@@ -56,11 +58,12 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 			}
 
 			setPartida({round: 1, jogador1: '', jogador2: ''});
-			setMensagemErro('');
 			if (mostrar)	setMostrar(false);
 		}else{
-			setMensagemErro("Partida inválida.");
+			novoErros.push({mensagem: 'Partida inválida.'});
 		}
+
+		setErros(novoErros);
 	}
 	
 	return (
@@ -95,7 +98,7 @@ const FormularioPartida = ({titulo, mensagemClica, mostrar, setMostrar, partidaA
 				onChange={(e) => setPartida({...partida, jogador2: e.target.value})}
 				onSelect={(value) => setPartida({...partida, jogador2: value})}/>
 			</Campo>
-			<MensagemErro>{mensagemErro}</MensagemErro>
+			{erros.length > 0 && <JanelaErro erros={erros} setErros={setErros}/>}
 			<Botoes>
 				<Botao onClick={() => saveOrUpdatePartida(partida)}>{mensagemClica}</Botao>
 				{mostrar && <Botao onClick={() => setMostrar(false)}>Cancelar edição</Botao>}

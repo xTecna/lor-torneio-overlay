@@ -8,8 +8,8 @@ import {RiCloseLine} from 'react-icons/ri';
 import {useSaveState} from '../../../context/SaveState';
 import {useTime} from '../../../context/Time';
 
-import {Section, SectionContent, MensagemErro} from '../style';
-import {Botoes, Botao} from './style';
+import {Section, SectionContent} from '../style';
+import {Botoes, Botao, MensagemErro} from './style';
 
 const SectionServidor = ({idServidor, setIdServidor, setDados}) => {
 	const textRef = useRef(null);

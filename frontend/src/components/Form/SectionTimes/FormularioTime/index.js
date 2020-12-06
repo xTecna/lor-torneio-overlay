@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 
 import {useSaveState} from '../../../../context/SaveState';
 
+import JanelaErro from '../../JanelaErro';
 import {Barra, Campo, Botoes, Botao} from './style';
-import {MensagemErro} from '../../style';
 
 const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}) => {
 
@@ -11,7 +11,7 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 	const { times } = saveState;
 
 	const [ time, setTime ] = useState({nome: '', url_logo: ''});
-	const [ mensagemErro, setMensagemErro ] = useState();
+	const [ erros, setErros ] = useState([]);
 
 	function buscaTime(nome){
 		return times.find((time) => time.nome === nome);
@@ -31,6 +31,8 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 	}
 
 	function saveOrUpdateTime(time){
+		const novoErros = [];
+
 		if (time.nome){
 			if (mostrar){
 				setSaveState({...saveState,
@@ -47,19 +49,20 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 				});
 			}else{
 				if (buscaTime(time.nome)){
-					setMensagemErro('Já existe um time com esse nome.');
+					novoErros.push({mensagem: 'Já existe um time com esse nome.'});
+					setErros(novoErros);
 					return;
 				}
 
 				setSaveState({...saveState, times: [...times, time]});
 			}
 			setTime({nome: '', url_logo: ''});
-			setMensagemErro('');
 			if (mostrar)	setMostrar(false);
 		}else{
-			setMensagemErro("Nome inválido.");
-			return;
+			novoErros.push({mensagem: 'Nome inválido.'});
 		}
+
+		setErros(novoErros);
 	}
 	
 	return (
@@ -75,7 +78,7 @@ const FormularioTime = ({titulo, mensagemClica, mostrar, setMostrar, timeAntigo}
 				<Barra type="text" name="url_logo_time" value={time.url_logo}
 					   onChange={(e) => setTime({...time, url_logo: e.target.value})}></Barra>
 			</Campo>
-			<MensagemErro>{mensagemErro}</MensagemErro>
+			{erros.length > 0 && <JanelaErro erros={erros} setErros={setErros}/>}
 			<Botoes>
 				<Botao onClick={() => saveOrUpdateTime(time)}>{mensagemClica}</Botao>
 				{mostrar && <Botao onClick={() => setMostrar(false)}>Cancelar edição</Botao>}

@@ -19,3 +19,8 @@ export const Botao = styled.button`
 	justify-content: center;
 	align-items: center;
 `;
+
+export const MensagemErro = styled.p`
+	color: #ff0000;
+	font-weight: bold;
+`;

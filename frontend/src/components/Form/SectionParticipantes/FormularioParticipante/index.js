@@ -3,9 +3,8 @@ import {DeckEncoder} from 'runeterra';
 
 import {useSaveState} from '../../../../context/SaveState';
 
+import JanelaErro from '../../JanelaErro';
 import {Barra, Campo, Botoes, Botao} from './style';
-import {MensagemErroDetalhes, Detalhes} from '../style';
-import {MensagemErro} from '../../style';
 
 import factions from '../../../../assets/factions.json';
 import champions from '../../../../assets/champions.json';
@@ -24,8 +23,7 @@ const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, se
 		decks: [{code: '', regions: [], champions: []},
 				{code: '', regions: [], champions: []},
 				{code: '', regions: [], champions: []}]});
-	const [ mensagemErro, setMensagemErro ] = useState();
-	const [ detalhe, setDetalhe ] = useState();
+	const [ erros, setErros ] = useState([]);
 
 	useEffect(() => {
 		function carregaJogador(){
@@ -121,24 +119,30 @@ const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, se
 	}
 
 	function saveOrUpdateJogador(jogador){
+		const novoErros = [];
+
 		if (jogador.nome && (jogador.time.nome === '' || buscaTime(jogador.time.nome))){
 			if (!mostrar && buscaJogador(jogador.nome)){
-				setMensagemErro('Já existe um jogador com esse nome.');
-				setDetalhe(false);
-				return;
+				novoErros.push({mensagem: 'Já existe um jogador com esse nome.'});
 			}
 
 			const novosDecks = decodeDecks(jogador.decks);
 
 			if (!decksValidos(novosDecks)){
-				setMensagemErro('Algum código de deck passado é inválido.');
-				setDetalhe(false);
+				novoErros.push({mensagem: 'Algum código de deck passado é inválido.'});
+				setErros(novoErros);
 				return;
 			}
 
 			if (!segueRegra(novosDecks)){
-				setMensagemErro('Os decks passados não seguem as regras estabelecidas. ');
-				setDetalhe(true);
+				novoErros.push({
+					mensagem: 'Os decks passados não seguem as regras estabelecidas.',
+					detalhes: geraLinkDetalhes()
+				});
+			}
+
+			if (novoErros.length > 0){
+				setErros(novoErros);
 				return;
 			}
 
@@ -171,13 +175,12 @@ const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, se
 				decks: [{code: '', regions: [], champions: []},
 						{code: '', regions: [], champions: []},
 						{code: '', regions: [], champions: []}]});
-			setMensagemErro('');
-			setDetalhe(false);
 			if (mostrar)	setMostrar(false);
 		}else{
-			setMensagemErro("Nome ou time inválido.");
-			setDetalhe(false);
+			novoErros.push({mensagem: 'Nome ou time inválido.'});
 		}
+		
+		setErros(novoErros);
 	}
 	
 	return (
@@ -203,10 +206,7 @@ const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, se
 						   onChange={(e) => mudaCodigoDeck(e.target.value, index)}></Barra>
 				</Campo>
 			})}
-			<MensagemErroDetalhes>
-				<MensagemErro>{mensagemErro}</MensagemErro>
-				{detalhe && <Detalhes href={geraLinkDetalhes()} target="_blank" rel="noopener noreferrer">Mais Detalhes</Detalhes>}
-			</MensagemErroDetalhes>
+			{erros.length > 0 && <JanelaErro erros={erros} setErros={setErros}/>}
 			<Botoes>
 				<Botao onClick={() => saveOrUpdateJogador(jogador)}>{mensagemClica}</Botao>
 				{mostrar && <Botao onClick={() => setMostrar(false)}>Cancelar edição</Botao>}

@@ -27,8 +27,3 @@ export const SectionContent = styled.div`
 		align-items: center;
 	}
 `;
-
-export const MensagemErro = styled.p`
-	color: #ff0000;
-	font-weight: bold;
-`;
