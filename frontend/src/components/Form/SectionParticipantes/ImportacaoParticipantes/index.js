@@ -147,13 +147,13 @@ const ImportacaoParticipantes = ({regraFuncao, funcaoErro}) => {
 		jogadoresValidos = jogadoresValidos.map((jogador) => converteJogador(jogador));
 		setSaveState({...saveState, jogadores: jogadoresValidos});
 		funcaoErro(erros);
-		document.querySelector('.csv-input').value = '';
+		document.querySelector('#csv-input-jogador').value = '';
 	}
 
 	return (
 		<Importar>
-			<label htmlFor="import"><GrDocumentCsv/>Importar jogadores:</label>
-			<CSVReader id="import" parserOptions={{ header: false }}
+			<label htmlFor="csv-input-jogador"><GrDocumentCsv/>Importar jogadores:</label>
+			<CSVReader id="csv-input-jogador" parserOptions={{ header: false }}
 					onFileLoaded={(data) => importarJogadores(data)}/>
 		</Importar>
 	);

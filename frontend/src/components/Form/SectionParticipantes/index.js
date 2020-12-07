@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import {useSaveState} from '../../../context/SaveState';
 
 import SectionTitle from '../SectionTitle';
-import {PesquisarImportar} from './style';
-import {Section, SectionContent} from '../style';
+import {Section, SectionContent, PesquisarImportar} from '../style';
 import BarraPesquisar from '../BarraPesquisar';
-import ImportacaoParticipante from './ImportacaoParticipantes';
+import ImportacaoParticipantes from './ImportacaoParticipantes';
 import JanelaErro from '../JanelaErro';
 import TabelaParticipantes from './TabelaParticipantes';
 import FormularioParticipante from './FormularioParticipante';
@@ -79,7 +78,7 @@ const SectionParticipantes = () => {
 				<SectionContent>
 					<PesquisarImportar>
 						<BarraPesquisar name={'jogador'} query={jogadorQuery} funcaoMuda={setJogadorQuery}/>
-						<ImportacaoParticipante regraFuncao={regraFuncao} funcaoErro={setErrosImportacao}/>
+						<ImportacaoParticipantes regraFuncao={regraFuncao} funcaoErro={setErrosImportacao}/>
 					</PesquisarImportar>
 					{errosImportacao.length > 0 && <JanelaErro erros={errosImportacao}
 															   setErros={setErrosImportacao}/>}
