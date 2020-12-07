@@ -37,22 +37,22 @@
 <ul>
   <li>lipeavelar</li>
   <li>alki_1</li>
-  <li>DaviBusanello</li>
-  <li>EdersonDeveloper</li>
-  <li>Tonyalkm</li>
+  <li><a href="https://www.twitch.tv/davibusanello">DaviBusanello</a></li>
+  <li><a href="https://www.twitch.tv/edersondeveloper">edersondeveloper</a></li>
+  <li><a href="https://www.twitch.tv/tonyalkm">tonyalkm</a></li>
   <li>zVirtu</li>
-  <li>AloRenato</li>
-  <li>LaPingvino</li>
-  <li>JPBbrab0</li>
-  <li>MorGiovanelli</li>
+  <li><a href="https://www.twitch.tv/alorenato">AloRenato</a></li>
+  <li><a href="https://www.twitch.tv/lapingvino">LaPingvino</a></li>
+  <li><a href="https://www.twitch.tv/jpbrab0">jpbrab0</a></li>
+  <li><a href="https://www.twitch.tv/morgiovanelli">morgiovanelli</a></li>
   <li>JJohnatan</li>
   <li>ZairaGoncalves</li>
-  <li>MahSgarbi</li>
-  <li>PokemaoBR</li>
-  <li>ViktorKav</li>
+  <li><a href="https://www.twitch.tv/mahsgarbi">MahSgarbi</a></li>
+  <li><a href="https://www.twitch.tv/pokemaobr">pokemaobr</a></li>
+  <li><a href="https://www.twitch.tv/viktorkav">ViktorKav</a></li>
   <li>ChicoCodes</li>
   <li>MarieEmAlgumLugarDoMundo</li>
-  <li>PachiCodes</li>
+  <li><a href="https://www.twitch.tv/pachicodes">PACHIcodes</li>
   <li>MaterazziStark</li>
   <li>seja_um_pouco_mais_feliz</li>
 </ul>
