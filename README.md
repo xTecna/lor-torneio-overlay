@@ -52,7 +52,7 @@
   <li><a href="https://www.twitch.tv/viktorkav">ViktorKav</a></li>
   <li>ChicoCodes</li>
   <li>MarieEmAlgumLugarDoMundo</li>
-  <li><a href="https://www.twitch.tv/pachicodes">PACHIcodes</li>
+  <li><a href="https://www.twitch.tv/pachicodes">PACHIcodes</a></li>
   <li>MaterazziStark</li>
   <li>seja_um_pouco_mais_feliz</li>
 </ul>
