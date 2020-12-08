@@ -68,7 +68,7 @@
   <li>alki_1</li>
   <li><a href="https://www.twitch.tv/edersondeveloper">edersondeveloper</a></li>
   <li><a href="https://www.twitch.tv/tonyalkm">tonyalkm</a></li>
-  <li>MarieEmAlgumLugarDoMundo</li>
+  <li>marieEmAlgumLugarDoMundo</li>
 </ul>
 
 <p>Obrigada pelo apoio de cada um de vocês a esse projeto e ao canal!</p>
