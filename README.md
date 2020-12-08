@@ -71,4 +71,4 @@
   <li>marieEmAlgumLugarDoMundo</li>
 </ul>
 
-<p>Obrigada pelo apoio de cada um de vocês a esse projeto e ao canal! <strong>E um agradecimento especial ao Rodrigues Costa Neto, ao Gabriel Modog e ao Fernando Daciuk por seus feedbacks incríveis!</strong></p>
+<p>Obrigada pelo apoio de cada um de vocês a esse projeto e ao canal! <strong>E um agradecimento especial ao <a href="https://github.com/RodriguesCosta">Rodrigues Costa Neto</a>, ao <a href="https://github.com/GabrielModog">Gabriel Modog</a> e ao <a href="https://github.com/fdaciuk">Fernando Daciuk</a> por seus feedbacks incríveis!</strong></p>
