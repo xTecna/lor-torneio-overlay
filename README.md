@@ -52,7 +52,7 @@
   <li><a href="https://www.twitch.tv/morgiovanelli">morgiovanelli</a></li>
   <li>danilomsou</li>
   <li><a href="https://www.twitch.tv/bicananuca">BicaNaNuca</a></li>
-  <li><a href="https://www.twitch.tv/profbrunolopes">ProfBrunoLopes</li>
+  <li><a href="https://www.twitch.tv/profbrunolopes">ProfBrunoLopes</a></li>
   <li>kdorionbr</li>
   <li>aliceatalla</li>
   <li>my_name_is_kelvin</li>
