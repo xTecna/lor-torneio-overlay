@@ -4,7 +4,7 @@
   <img alt="Twitch Status" src="https://img.shields.io/twitch/status/xtecna?style=plastic">
 </a>
 
-<h2 align="center">Agora on-line em: <a href="https://lor-torneio-overlay.xtecna.vercel.app/">https://lor-torneio-overlay.xtecna.vercel.app/</a></h2>
+<h2 align="center">Agora on-line em: <a href="https://lor-torneio-overlay.xtecna.vercel.app/" target="_blank" rel="noreferrer noopener">https://lor-torneio-overlay.xtecna.vercel.app/</a></h2>
 
 <p>
   Esse projeto consiste em um overlay para torneios de LoR, desenvolvido ao vivo no canal <a href="https://www.twitch.tv/xtecna">https://www.twitch.tv/xTecna</a>. Acesse e deixe seu follow para acompanhar o projeto.
