@@ -35,26 +35,40 @@
 <h3>Agradecimentos:</h3>
 
 <ul>
-  <li>lipeavelar</li>
-  <li>alki_1</li>
-  <li>DaviBusanello</li>
-  <li>EdersonDeveloper</li>
-  <li>Tonyalkm</li>
-  <li>zVirtu</li>
-  <li>AloRenato</li>
-  <li>LaPingvino</li>
-  <li>JPBbrab0</li>
-  <li>MorGiovanelli</li>
-  <li>JJohnatan</li>
-  <li>ZairaGoncalves</li>
-  <li>MahSgarbi</li>
-  <li>PokemaoBR</li>
-  <li>ViktorKav</li>
+  <li><a href="https://www.twitch.tv/pachicodes">PACHIcodes</a></li>
   <li>ChicoCodes</li>
-  <li>MarieEmAlgumLugarDoMundo</li>
-  <li>PachiCodes</li>
-  <li>MaterazziStark</li>
+  <li>zVirtu</li>
+  <li><a href="https://www.twitch.tv/sudrakon">Sudrakon</a></li>
+  <li>xuxa_</li>
+  <li><a href="https://www.twitch.tv/alorenato">AloRenato</a></li>
+  <li><a href="https://www.twitch.tv/lapingvino">LaPingvino</a></li>
+  <li><a href="https://www.twitch.tv/pokemaobr">pokemaobr</a></li>
+  <li><a href="https://www.twitch.tv/reisdev">ReisDev</a></li>
+  <li>JJohnatan</li>
+  <li>LeoCavalcante</li>
+  <li>marcosmew1996</li>
+  <li><a href="https://www.twitch.tv/mahsgarbi">MahSgarbi</a></li>
+  <li>mycurrentjoys</li>
+  <li><a href="https://www.twitch.tv/morgiovanelli">morgiovanelli</a></li>
+  <li>danilomsou</li>
+  <li><a href="https://www.twitch.tv/bicananuca">BicaNaNuca</a></li>
+  <li><a href="https://www.twitch.tv/profbrunolopes">ProfBrunoLopes</a></li>
+  <li>kdorionbr</li>
+  <li>aliceatalla</li>
+  <li>my_name_is_kelvin</li>
+  <li>drxwbot</li>
+  <li><a href="https://www.twitch.tv/viktorkav">ViktorKav</a></li>
+  <li>lipeavelar</li>
+  <li>ayrtoncoutinho</li>
   <li>seja_um_pouco_mais_feliz</li>
+  <li>materazzistark</li>
+  <li><a href="https://www.twitch.tv/davibusanello">DaviBusanello</a></li>
+  <li><a href="https://www.twitch.tv/jpbrab0">jpbrab0</a></li>
+  <li>zairaconcalves</li>
+  <li>alki_1</li>
+  <li><a href="https://www.twitch.tv/edersondeveloper">edersondeveloper</a></li>
+  <li><a href="https://www.twitch.tv/tonyalkm">tonyalkm</a></li>
+  <li>marieEmAlgumLugarDoMundo</li>
 </ul>
 
-<p>Obrigada pelo apoio de cada um de vocês a esse projeto e ao canal!</p>
+<p>Obrigada pelo apoio de cada um de vocês a esse projeto e ao canal! <strong>E um agradecimento especial ao <a href="https://github.com/RodriguesCosta">Rodrigues Costa Neto</a>, ao <a href="https://github.com/GabrielModog">Gabriel Modog</a> e ao <a href="https://github.com/fdaciuk">Fernando Daciuk</a> por seus feedbacks incríveis!</strong></p>
