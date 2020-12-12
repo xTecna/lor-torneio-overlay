@@ -14,14 +14,12 @@ const Deck = ({status, deck}) => {
 	const {regions, champions} = deck;
 
 	return (
-		<Decks className="decks">
-			<DeckDiv className={`deck ${status}`}>
-				{champions.length !== 0 ?
-					champions.map((item, index) => renderChampion(item, index, status)) :
-					regions.map((item, index) => renderRegion(item, index, status))
-				}
-			</DeckDiv>
-		</Decks>
+		<DeckDiv className={`deck ${status}`}>
+			{champions.length !== 0 ?
+				champions.map((item, index) => renderChampion(item, index, status)) :
+				regions.map((item, index) => renderRegion(item, index, status))
+			}
+		</DeckDiv>
 	)
 };
 
