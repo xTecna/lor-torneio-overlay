@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 
-export const Decks = styled.div`
-	width: ${props => props.theme.webcamSize*(2/3)}vh;
-	height: ${props => props.theme.webcamSize*0.4}vh;
-
-	display: flex;
-	flex-direction: column;
-`;
-
 export const Deck = styled.div`
+	width: ${props => props.theme.webcamSize*(2/3)}vh;
 	height: ${props => props.theme.webcamSize*0.4}vh;
 	
 	align-items: center;
