@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Decks, Deck as DeckDiv, Region, Champion} from './style';
+import {Deck as DeckDiv, Region, Champion} from './style';
 
 function renderRegion(region, index, status){
 	return <Region className={`region ${status}`} key={index}><img src={`http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/></Region>;
