@@ -13,7 +13,7 @@ import SectionTimes from './SectionTimes';
 const Form = ({idServidor, setIdServidor, setDados}) => {
 
 	return (
-		<FormDiv>
+		<FormDiv className="form">
 			<SectionCreditos/>
 			<SectionServidor idServidor={idServidor} setIdServidor={setIdServidor} setDados={setDados}/>
 			<SectionPreferencias/>
