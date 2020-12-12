@@ -80,7 +80,7 @@ const SectionServidor = ({idServidor, setIdServidor, setDados}) => {
 					<Link to={`/${idServidor}`} target='_blank'>
 						<Botao><FiExternalLink/></Botao>
 					</Link>
-					<Botao onClick={(e) => copiar(e)}><FiCopy/></Botao>
+					{mostrarIdServidor && <Botao onClick={(e) => copiar(e)}><FiCopy/></Botao>}
 					<Botao onClick={() => abrirFormulario()}><FaPencilAlt/></Botao>
 				</Botoes>
 				{mostrarEditar &&
