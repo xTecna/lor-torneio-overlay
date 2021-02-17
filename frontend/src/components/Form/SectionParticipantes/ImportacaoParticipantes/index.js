@@ -79,6 +79,10 @@ const ImportacaoParticipantes = ({regraFuncao, funcaoErro}) => {
 		return campeoes;
 	}
 
+	function converteNome(nome){
+		return nome.split('#')[0];
+	}
+
 	function converteDeck(codigo){
 		try{
 			const cards = DeckEncoder.decode(codigo);
@@ -96,7 +100,7 @@ const ImportacaoParticipantes = ({regraFuncao, funcaoErro}) => {
 			converteDeck(deck3)
 		];
 		return {
-			nome: nome,
+			nome: converteNome(nome),
 			time: time ? buscaTime(time) : {nome: '', url_logo: ''},
 			decks: decks.map((deck) => { return {
 				code: deck.code,
@@ -147,14 +151,14 @@ const ImportacaoParticipantes = ({regraFuncao, funcaoErro}) => {
 		jogadoresValidos = jogadoresValidos.map((jogador) => converteJogador(jogador));
 		setSaveState({...saveState, jogadores: jogadoresValidos});
 		funcaoErro(erros);
-		document.querySelector('#csv-input-jogador').value = '';
+		document.getElementsByClassName('csv-input')[0].value = '';
 	}
 
 	return (
 		<Importar>
 			<label htmlFor="csv-input-jogador"><GrDocumentCsv/>Importar jogadores:</label>
-			<CSVReader id="csv-input-jogador" parserOptions={{ header: false }}
-					onFileLoaded={(data) => importarJogadores(data)}/>
+			<CSVReader parserOptions={{ header: false }}
+					   onFileLoaded={(data) => importarJogadores(data)}/>
 		</Importar>
 	);
 }

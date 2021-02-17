@@ -42,7 +42,7 @@ const ImportacaoTimes = ({funcaoErro}) => {
 		timesValidos = timesValidos.map((time) => converteTime(time));
 		setSaveState({...saveState, times: timesValidos});
 		funcaoErro(erros);
-		document.querySelector('#csv-input-time').value = '';
+		document.getElementsByClassName('csv-input')[1].value = '';
 	}
 
 	return (
