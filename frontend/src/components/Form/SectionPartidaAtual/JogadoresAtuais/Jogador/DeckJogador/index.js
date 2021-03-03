@@ -8,7 +8,7 @@ import {DeckJogador as DeckJogadorDiv, Deck, Regions, Region, Champions, Champio
 import ToggleButton from './ToggleButton';
 
 function renderRegion(region, index){
-	return <Region key={index}><img src={`http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/></Region>;
+	return <Region className="region" key={index}><img src={region === 'shurima' ? 'http://escolaruneterra.com.br/gallerycard/assets/icon-shurima.png' : `http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/></Region>;
 }
 
 function renderChampion(champion, index){

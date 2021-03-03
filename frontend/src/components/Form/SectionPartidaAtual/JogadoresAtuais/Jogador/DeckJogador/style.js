@@ -35,8 +35,8 @@ export const Region = styled.div`
 	justify-content: center;
 
 	img{
-		width: 100%;
-		height: 100%;
+		width: 36px;
+		height: 36px;
 	}
 `;
 

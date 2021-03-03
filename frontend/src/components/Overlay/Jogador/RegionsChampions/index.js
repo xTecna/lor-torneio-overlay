@@ -3,7 +3,7 @@ import React from 'react';
 import {RegionsChampions as RegionsChampionsDiv, Regions, Region, Champions, Champion} from './style';
 
 function renderRegion(region, index){
-	return <Region className="region" key={index}><img src={`http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/></Region>;
+	return <Region className="region" key={index}><img src={region === 'shurima' ? 'http://escolaruneterra.com.br/gallerycard/assets/icon-shurima.png' : `http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/></Region>;
 };
 
 function renderChampion(champion, index, number_champions){

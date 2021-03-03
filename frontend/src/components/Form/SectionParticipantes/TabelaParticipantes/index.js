@@ -18,7 +18,11 @@ function renderTime(time, index){
 function renderRegion(region, index){
 	return (
 		<Region key={index}>
-			<img src={`http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/>
+			{region === 'shurima' ?
+					<img src={'http://escolaruneterra.com.br/gallerycard/assets/icon-shurima.png'} alt='shurima'/>
+				:
+					<img src={`http://dd.b.pvp.net/latest/core/en_us/img/regions/icon-${region}.png`} alt={region}/>
+			}
 		</Region>
 	);
 }

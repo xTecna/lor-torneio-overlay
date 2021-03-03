@@ -24,8 +24,8 @@ export const Region = styled.div`
 	height: ${props => props.theme.webcamSize*0.2}vh;
 
 	img{
-		width: 100%;
-		height: 100%;
+		width: 36px;
+		height: 36px;
 	}
 `;
 
