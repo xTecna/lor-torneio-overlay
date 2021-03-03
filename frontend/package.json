@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "react": "^16.14.0",
     "react-autocomplete": "^1.8.1",
@@ -16,7 +16,7 @@
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
-    "runeterra": "^2.0.0",
+    "runeterra": "git+https://github.com/xTecna/runeterra.git#shurima",
     "styled-components": "^5.2.1"
   },
   "scripts": {
