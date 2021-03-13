@@ -16,7 +16,6 @@
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "runeterra": "git+https://github.com/xTecna/runeterra.git#shurima",
     "styled-components": "^5.2.1"
   },
   "scripts": {
