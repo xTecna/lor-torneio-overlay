@@ -1,38 +1,38 @@
-<h1 align="center">Overlay Legends of Runeterra</h1>
+<h1 align="center">Overlay for Legends of Runeterra Tournaments</h1>
 
 <a href="https://www.twitch.tv/xTecna">
   <img alt="Twitch Status" src="https://img.shields.io/twitch/status/xtecna?style=plastic">
 </a>
 
-<h2 align="center">Agora on-line em: <a href="https://lor-torneio-overlay.xtecna.vercel.app/">https://lor-torneio-overlay.xtecna.vercel.app/</a></h2>
+<h2 align="center">Now on-line at: <a href="https://lor-torneio-overlay.vercel.app/">https://lor-torneio-overlay.vercel.app/</a></h2>
 
-<p>
-  Esse projeto consiste em um overlay para torneios de LoR, desenvolvido ao vivo no canal <a href="https://www.twitch.tv/xtecna">https://www.twitch.tv/xTecna</a>. Acesse e deixe seu follow para acompanhar o projeto.
+This project is an overlay for LoR tournaments, developed live at <a href="https://www.twitch.tv/xtecna">my Twitch channel</a>. If you want to check it out or see how it's doing, please follow me!
 
-  Para mais informações você pode acessar esse vídeo que explica o projeto <a href="https://clips.twitch.tv/SpikyPeppyVelociraptorHumbleLife">https://clips.twitch.tv/SpikyPeppyVelociraptorHumbleLife</a>.
-</p>
+<img align="center" alt="Screenshot" src="./frontend/src/assets/ExemploTela.png">
 
-<p align="center"><img alt="Exemplo de tela" src="./frontend/src/assets/ExemploTela.png"></p>
-
-<p>Funcionalidades atuais suportadas pelo overlay:</p>
+Currently supported by the overlay:
 <ul>
-  <li>Link único de visualização remota para colocar no OBS. (basta copiar o ID do sessão e criar um novo Browser que redireciona para <code>https://[link do overlay]/[ID]</code>)</li>
-  <li>Visualização das webcams dos jogadores, fácil de encaixar a webcam pelo OBS.</li>
-  <li>Cronômetro com tempo limite.</li>
-  <li>Suporte a três das regras mais populares em campeonatos: regionlock, cardlock e riotlock.</li>
-  <li>Gerenciamento da partida atual com escolha de ban e atualização de score.</li>
-  <li>Gerenciamento das partidas, participantes e times do campeonato.</li>
+  <li>Single link for remote visualization to put on OBS. (you only have to copy your session ID and create a new Browser that redirects to <code>https://lor-torneio-overlay.vercel.app/[ID]</code>)</li>
+  <li>It's really easy to put a webcam space and to fit it in OBS.</li>
+  <li>Stopwatch with time limit.</li>
+  <li>Support to three of the most popular rules in tournaments: regionlock, cardlock and riotlock.</li>
+  <li>Current match management with bannned decks and score updating. You can also easily swap opponents when the POV changes.</li>
+  <li>Matches, players and teams management, all in a really nice interface.</li>
+  <li>It's possible to import match, players and teams from a CSV file.</li>
+  <li>Custom CSS available.</li>
+  <li>Can be remote controlled by a third party, if you are a streamer and has an organization team available.</li>
 </ul>
 
-<p>Funcionalidade futuras:</p>
+Future features:
 <ul>
-  <li>Exportação das partidas, participantes e times para arquivo CSV.</li>
-  <li>Customização da aparência do overlay.</li>
-  <li>Interface responsiva para dispositivos móveis.</li>
-  <li>Generalização para campeonatos com número variado de decks (não apenas 3).</li>
+  <li>Exporting matches, players and teams to a CSV file.</li>
+  <li>Easily customizable appearance, by the interface (not from CSS, like nowadays).</li>
+  <li>Responsive interface for mobile devices.</li>
+  <li>Generalization to tournaments with several number of decks (not only 3).</li>
+  <li>Generalization to tournaments with 2 vs 2 players (from the Lab).</li>
 </ul>
 
-<h3>Agradecimentos:</h3>
+<h3>Special Thanks:</h3>
 
 <ul>
   <li><a href="https://www.twitch.tv/pachicodes">PACHIcodes</a></li>
@@ -71,4 +71,4 @@
   <li>marieEmAlgumLugarDoMundo</li>
 </ul>
 
-<p>Obrigada pelo apoio de cada um de vocês a esse projeto e ao canal! <strong>E um agradecimento especial ao <a href="https://github.com/RodriguesCosta">Rodrigues Costa Neto</a>, ao <a href="https://github.com/GabrielModog">Gabriel Modog</a> e ao <a href="https://github.com/fdaciuk">Fernando Daciuk</a> por seus feedbacks incríveis!</strong></p>
+Thanks everyone for your support! <strong>A super special thanks to <a href="https://github.com/RodriguesCosta">Rodrigues Costa Neto</a>, <a href="https://github.com/GabrielModog">Gabriel Modog</a> and <a href="https://github.com/fdaciuk">Fernando Daciuk</a> for your amazing feedbacks!</strong>
