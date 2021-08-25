@@ -29,7 +29,7 @@ function renderChampion(champion, index) {
   return (
     <Champion
       key={index}
-      img={`http://ddragon.leagueoflegends.com/cdn/10.15.1/img/champion/${champion.nome}.png`}
+      img={`http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champion.nome}.png`}
     >
       {champion.qtd}
     </Champion>

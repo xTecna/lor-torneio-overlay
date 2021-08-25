@@ -18,7 +18,7 @@ function renderChampion(champion, index, status) {
     <Champion
       className={`champion ${status}`}
       key={index}
-      img={`http://ddragon.leagueoflegends.com/cdn/10.15.1/img/champion/${champion.nome}.png`}
+      img={`http://ddragon.leagueoflegends.com/cdn/11.16.1/img/champion/${champion.nome}.png`}
     >
       {champion.qtd}
     </Champion>
