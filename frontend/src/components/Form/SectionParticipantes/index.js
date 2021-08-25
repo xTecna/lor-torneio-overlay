@@ -39,14 +39,8 @@ const SectionParticipantes = () => {
     );
     const champions = [...new Set(allChampions)];
 
-    console.log(allChampions);
-    console.log(champions);
-
     const allRegions = decks.map((deck) => deck.regions.sort().join(""));
     const regions = [...new Set(allRegions)];
-
-    console.log(allRegions);
-    console.log(regions);
 
     return (
       allChampions.length === champions.length &&
