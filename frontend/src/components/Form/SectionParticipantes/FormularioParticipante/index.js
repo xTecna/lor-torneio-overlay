@@ -55,15 +55,24 @@ const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, se
 	}
 
 	function pegaRegioes(cards){
-		let regions = [];
+    let cardsPerRegion = {};
 		cards.forEach((card) => {
 			const region = card.faction.shortCode;
-			if (!regions.includes(factions[region])){
-				regions.push(factions[region]);
-			}
+      if (!cardsPerRegion.hasOwnProperty(region)){
+        cardsPerRegion[region] = 0
+      }
+      cardsPerRegion[region] = cardsPerRegion[region] += 1
 		});
-		regions.sort();
-		return regions;
+
+    let allRegions = Object.keys(cardsPerRegion).map((region) => [region, cardsPerRegion[region]]);
+		let deckRegions = allRegions
+      .sort((a,b) => (b[1] - a[1]))
+      .slice(0,2)
+      .map((region) => factions[region[0]]);
+ 
+    console.log(factions)
+
+		return deckRegions;
 	}
 
 	function pegaCampeoes(cards){
@@ -90,7 +99,8 @@ const FormularioParticipante = ({titulo, mensagemClica, regraFuncao, mostrar, se
 
 			try{
 				cards = DeckEncoder.decode(code);
-			}catch{
+			}catch (e){
+        console.log(e)
 				return undefined;
 			}
 
